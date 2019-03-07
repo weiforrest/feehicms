@@ -1,0 +1,33 @@
+version: '2'
+services:
+  web:
+    image: nginx:latest
+    volumes:
+      - ./:/app:delegated #网站目录
+      - ./site.conf:/etc/nginx/conf.d/site.conf #nginx 配置文件 使用前需要复制
+    ports:
+      - '8000:80'
+    links:
+      - php
+    restart: always
+
+  php:
+     image: php:gd
+     volumes:
+      - ./:/app:delegated
+     depends_on:
+      - db
+     restart: always
+
+  db:
+     image: mysql:5.7
+     volumes:
+      - ./data:/var/lib/mysql:delegated
+     restart: always
+     ports:
+      - '3306:3306'
+     environment:
+       MYSQL_ROOT_PASSWORD: root
+       MYSQL_DATABASE: docker
+       MYSQL_USER: docker
+       MYSQL_PASSWORD: docker
