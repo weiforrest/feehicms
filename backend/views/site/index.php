@@ -102,9 +102,6 @@ $identity = Yii::$app->getUser()->getIdentity();
                     <li class="hidden-xs">
                         <a href="javascript:void(0)" onclick="reloadIframe()"><i class="fa fa-refresh"></i> <?= Yii::t('app', 'Refresh') ?></a>
                     </li>
-                    <li class="hidden-xs">
-                        <a href="http://cms.feehi.com/help" class="J_menuItem" data-index="0"><i class="fa fa-cart-arrow-down"></i> <?= Yii::t('app', 'Support') ?></a>
-                    </li>
                     <li class="dropdown hidden-xs">
                         <a class="right-sidebar-toggle" aria-expanded="false"><i class="fa fa-tasks"></i> <?= Yii::t('app', 'Theme') ?></a>
                     </li>
@@ -149,7 +146,7 @@ $identity = Yii::$app->getUser()->getIdentity();
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<?= Url::to(['site/main']) ?>" frameborder="0" data-id="<?= Url::to(['site/main']) ?>" seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right">&copy; 2015-<?=date('Y')?> <a href="http://blog.feehi.com/" target="_blank">feehi</a></div>
+            <div class="pull-right">&copy; <?=date('Y')?> <a href="http://blog.feehi.com/" target="_blank">黄爽</a></div>
         </div>
     </div>
     <!--右侧部分结束-->

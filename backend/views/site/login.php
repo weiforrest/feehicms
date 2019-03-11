@@ -63,7 +63,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div>
                 <h1 class="logo-name">H+</h1>
             </div>
-            <h3><?= Yii::t('app', 'Welcome to') ?> Feehi CMS</h3>
+            <h3><?= Yii::t('app', 'Welcome to') ?></h3>
             <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
             <?= $form->field($model, 'username', ['template' => "<div style='position:relative'>{input}\n{error}\n{hint}</div>"])
                 ->textInput(['autofocus' => true, 'placeholder' => Yii::t("app", "Username")]) ?>
@@ -88,16 +88,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ]) ?>
 
             <p class="text-muted text-center">
-                <a href="<?= Url::to(['admin-user/request-password-reset']) ?>">
-                    <small><?= Yii::t('app', 'Forgot password') ?></small>
-                </a> |
-                <?php
-                if (Yii::$app->language == 'en-US') {
-                    echo "<a href = " . Url::to(['site/language', 'lang' => 'zh-CN']) . " > 简体中文</a >";
-                } else {
-                    echo "<a href=" . Url::to(['site/language', 'lang' => 'en-US']) . ">English</a>";
-                }
-                ?>
+            
             </p>
 
             <?php ActiveForm::end(); ?>
