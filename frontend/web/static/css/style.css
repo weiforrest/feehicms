@@ -2518,8 +2518,8 @@ button.close {
 }
 
 body {
-    max-width: 1200px;
-    width:1000px;
+    /*max-width: 1200px;
+    width:1000px;*/
     margin: 0 auto;
     font-family: "Microsoft Yahei", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -2604,7 +2604,7 @@ a:hover, a:focus {
 }
 
 .content {
-    margin-right: 380px;
+    /* margin-right: 380px; */
 }
 
 .content-page {
@@ -7908,6 +7908,7 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 }
 
 #nav-header {
+    background: url("/static/images/banner.jpg") no-repeat center;
     height: 250px;
     width: 100%;
     z-index: 999
@@ -7990,9 +7991,16 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     font-weight: 700;
     padding: 0 0 2px
 }
+.site-title span {
+    color:#0063a4;
+    font-size:3rem;
+}
 
 #site-nav-wrap {
-    float: right;
+    /*float: right;*/
+    width:100%;
+    max-width: 1180px;
+    margin:auto;
     min-height: 45px
 }
 
@@ -8050,14 +8058,15 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 }
 
 #site-nav .down-menu a {
-    color: #666;
+    color: #0063a4;
     padding: 0 13px;
     text-align: left;
     transition-duration: 1.2s
 }
 
 #site-nav .down-menu>li.sfHover>a, #site-nav .down-menu>li>a:hover {
-    color: #45B6F7;
+    color: #ffffff;
+    background: #0063a4;
 }
 
 #site-nav .down-menu>.current-menu-item>a, #site-nav .down-menu>.current-menu-item>a:hover {

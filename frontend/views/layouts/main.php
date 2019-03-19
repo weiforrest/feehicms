@@ -29,6 +29,16 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <script>
+        window._deel = {
+            name: '<?=Yii::$app->feehi->website_title?>',
+            url: '<?=Yii::$app->getHomeUrl()?>',
+            comment_url: '<?=Url::to(['article/comment'])?>',
+            ajaxpager: '',
+            commenton: 0,
+            roll: [4,]
+        }
+    </script>
 </head>
 <?php $this->beginBody() ?>
 <body class="home blog">
@@ -65,8 +75,13 @@ AppAsset::register($this);
                 <span class="nav-search_1"><i class="fa fa-navicon"></i></span>
                 <hgroup class="logo-site">
                     <h1 class="site-title">
+                        <span>对党忠诚</span>
+                        <span>服务人民</span>
                         <a href="<?= Yii::$app->getHomeUrl() ?>"><img style="height:175px" src="<?=Yii::$app->getRequest()->getBaseUrl()?>/static/images/logo.png" alt="<?= Yii::$app->feehi->website_title ?>"></a>
+                        <span>执法公正</span>
+                        <span>纪律严明</span>
                     </h1>
+                    <h1 class="site-title" style="color:#0063a4"><?= Yii::$app->feehi->website_title."信息网" ?></h1>
                 </hgroup>
             </div>
         </div>
