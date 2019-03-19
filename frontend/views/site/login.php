@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="content-wrap">
     <div class="site-login article-content" style="width:500px;margin: 0 auto;text-align: center">
-        <h1><?= Html::encode($this->title) ?></h1>
+        <h1><?= Html::encode(Yii::t('app','Login')) ?></h1>
         <style>
             label {
                 float: left;
@@ -40,9 +40,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
                 <?= $form->field($model, 'rememberMe', ['labelOptions'=>['style'=>'width:117px;margin-left:79px;position:relative;left:34px;top:3px']])->checkbox(['style'=>'margin-right:0px;position:relative;top:-2px'])?>
 
-                <div class="form-group" style="color:#999;margin-right: 120px;">
-                    <?= Yii::t('frontend', 'If you forgot your password you can') ?> <?= Html::a(Yii::t('frontend', 'reset it'), ['site/request-password-reset']) ?>
-                </div>
 
                 <div class="form-group" style="margin-right: 50px">
                     <?= Html::submitButton(Yii::t('frontend', 'Login'), ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>

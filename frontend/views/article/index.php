@@ -64,7 +64,6 @@ $this->title = Yii::$app->feehi->website_title;
         ]) ?>
     </div>
 </div>
-<?= $this->render('/widgets/_sidebar') ?>
 <?php JsBlock::begin() ?>
 <script>
     $(function () {

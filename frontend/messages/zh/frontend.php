@@ -21,7 +21,7 @@ return [
     'If you forgot your password you can' => '忘记密码您可以',
     'reset it' => '重置',
     'Remember Me' => '记住登陆',
-    'Well-choosen' => '精选导读',
+    'Well-choosen' => '精选头条',
     'Latest Articles' => '最新发布',
     'Related Recommends' => '相关推荐',
     'Reproduced please indicate the source' => '转载请注明',

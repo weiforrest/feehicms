@@ -29,16 +29,6 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <meta http-equiv="X-UA-Compatible" content="IE=10,IE=9,IE=8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
-    <script>
-        window._deel = {
-            name: '<?=Yii::$app->feehi->website_title?>',
-            url: '<?=Yii::$app->getHomeUrl()?>',
-            comment_url: '<?=Url::to(['article/comment'])?>',
-            ajaxpager: '',
-            commenton: 0,
-            roll: [4,]
-        }
-    </script>
 </head>
 <?php $this->beginBody() ?>
 <body class="home blog">
@@ -53,7 +43,6 @@ AppAsset::register($this);
                         if (Yii::$app->getUser()->getIsGuest()) {
                             ?>
                             <a href="<?= Url::to(['site/login']) ?>" class="signin-loader"><?= Yii::t('frontend', 'Hi, Log in') ?></a>&nbsp; &nbsp;
-                            <a href="<?= Url::to(['site/signup']) ?>" class="signup-loader"><?= Yii::t('frontend', 'Sign up') ?></a>
                         <?php } else { ?>
                             Welcome, <?= Html::encode(Yii::$app->user->identity->username) ?>
                             <a href="<?= Url::to(['site/logout']) ?>" class="signup-loader"><?= Yii::t('frontend', 'Log out') ?></a>
@@ -73,22 +62,22 @@ AppAsset::register($this);
     <div id="nav-header" class="">
         <div id="top-menu">
             <div id="top-menu_1">
-                <span class="nav-search"><i class="fa fa-search"></i></span>
                 <span class="nav-search_1"><i class="fa fa-navicon"></i></span>
-                <hgroup class="logo-site" style="margin-top: 10px;">
+                <hgroup class="logo-site">
                     <h1 class="site-title">
-                        <a href="<?= Yii::$app->getHomeUrl() ?>"><img src="<?=Yii::$app->getRequest()->getBaseUrl()?>/static/images/logo.png" alt="<?= Yii::$app->feehi->website_title ?>"></a>
+                        <a href="<?= Yii::$app->getHomeUrl() ?>"><img style="height:175px" src="<?=Yii::$app->getRequest()->getBaseUrl()?>/static/images/logo.png" alt="<?= Yii::$app->feehi->website_title ?>"></a>
                     </h1>
                 </hgroup>
-                <div id="site-nav-wrap">
-                    <nav id="site-nav" class="main-nav">
-                        <div>
-                            <?= MenuView::widget() ?>
-                        </div>
-                    </nav>
-                </div>
             </div>
         </div>
+    </div>
+    <div id="site-nav-wrap">
+        <nav id="site-nav" class="main-nav">
+            <div>
+                <?= MenuView::widget() ?>
+                <span class="nav-search"><i class="fa fa-search"></i></span>
+            </div>
+        </nav>
     </div>
     <?= MenuView::widget([
         'template' => '<nav><ul class="nav_sj" id="nav-search_1">{lis}</ul></nav>',
@@ -104,13 +93,6 @@ AppAsset::register($this);
             <button id="searchsubmit" type="submit"><?= Yii::t('frontend', 'Search') ?></button>
         </form>
     </div>
-    <div id="searchbar">
-        <form id="searchform" target="_blank" action="https://www.baidu.com/s" method="get">
-            <input type="hidden" name="entry" value="1">
-            <input class="swap_value" name="w" placeholder="<?= Yii::t('frontend', 'Please input keywords') ?>">
-            <button id="searchsubmit" type="submit"><?= Yii::t('frontend', 'Baidu') ?></button>
-        </form>
-    </div>
     <div class="clear"></div>
 </div>
 
@@ -119,23 +101,13 @@ AppAsset::register($this);
     <?= $content ?>
 </section>
 
-<div class="branding branding-black">
-    <div class="container_f">
-        <h2><?= Yii::t('frontend', 'Effective,Professional,Conform to SEO') ?></h2>
-        <a class="btn btn-lg" href="http://www.feehi.com/page/contact" target="_blank"><?= Yii::t('frontend', 'Contact us') ?></a>
-    </div>
-</div>
 
 <footer class="footer">
     <div class="footer-inner">
         <p>
-            <a href="http://www.feehi.com/" title="Feehi CMS">Feehi CMS</a> <?= Yii::t('frontend', 'Copyright, all rights reserved') ?> © 2015-<?=date('Y')?>&nbsp;&nbsp;
-            <select onchange="location.href=this.options[this.selectedIndex].value;" style="height: 30px">
-                <option <?php if (Yii::$app->language == 'zh-CN') {echo 'selected';} ?> value="<?= Url::to(['site/language', 'lang' => 'zh-CN']) ?>">简体中文</option>
-                <option <?php if (Yii::$app->language == 'en-US') {echo "selected";} ?> value="<?= Url::to(['site/language', 'lang' => 'en-US']) ?>">English</option>
-            </select>
+            宜春市公安局特巡警支队 <?= Yii::t('frontend', 'Copyright, all rights reserved') ?> © <?=date('Y')?>&nbsp;&nbsp;
         </p>
-        <p><?=Yii::$app->feehi->website_icp?> Powered by Feehi CMS <a title="飞嗨" target="_blank" href="http://blog.feehi.com">飞嗨</a></p>
+        <p><?=Yii::$app->feehi->website_icp?> Powered by 宜春市公安局特巡警支队政治处</p>
     </div>
 </footer>
 
