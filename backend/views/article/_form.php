@@ -88,27 +88,6 @@ $this->title = "Articles";
                     </div>
                     <!--属性设置stop-->
 
-                    <!--seo设置start-->
-                    <div class="col-md-5 droppable sortable ui-droppable ui-sortable" style="">
-                        <div class="ibox-title">
-                            <h5><?= Yii::t('app', 'Seo Setting') ?></h5>
-                        </div>
-                        <div class="ibox-content">
-                            <?= $form->field($model, 'seo_title', [
-                                'size' => 9,
-                                'labelOptions' => ['class' => 'col-sm-3']
-                            ])->textInput(); ?>
-                            <?= $form->field($model, 'seo_keywords', [
-                                'size' => 9,
-                                'labelOptions' => ['class' => 'col-sm-3']
-                            ])->textInput(); ?>
-                            <?= $form->field($model, 'seo_description', [
-                                'size' => 9,
-                                'labelOptions' => ['class' => 'col-sm-3']
-                            ])->textInput(); ?>
-                        </div>
-                    </div>
-                    <!--seo设置stop-->
 
 
                     <div class="col-md-5 droppable sortable ui-droppable ui-sortable" style="">
