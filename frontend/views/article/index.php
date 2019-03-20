@@ -25,43 +25,75 @@ $this->title = Yii::$app->feehi->website_title;
 ?>
 <div class="content-wrap">
     <div class="content">
-        <div class="slick_bor">
+        <? if($isIndex) { ?>
+        <div class="slick_bor left">
             <?= ScrollPicView::widget([
                 'banners' => Options::getBannersByType('index'),
             ]) ?>
             <div class="ws_shadow"></div>
         </div>
-        <div class="daodu clr">
+        <div class="daodu right">
             <?= ArticleListView::widget([
                 'dataProvider' => new ArrayDataProvider([
-                    'allModels' => Article::find()->limit(1)->where(['flag_headline'=>1])->limit(4)->with('category')->orderBy("sort asc")->all(),
+                    'allModels' => Article::find()->limit(1)->where(['flag_headline'=>1])->limit(5)->with('category')->orderBy("sort asc")->all(),
                 ]),
                 'layout' => "<div class='tip'><h4>" . Yii::t('frontend', 'Well-choosen') . "</h4></div>
                                 <ul class=\"dd-list\">
                                     {items}
                                 </ul>
                              ",
-                'template' => "<figure class='dd-img'>
-                                        <a title='{title}' target='_blank' href='{article_url}'>
-                                            <img src='{img_url}' style='display: inline;' alt='{title}'>
-                                        </a>
-                                    </figure>
-                                    <div class='dd-content'>
-                                        <h2 class='dd-title'>
-                                            <a rel='bookmark' title='{title}' href='{article_url}'>{title}</a>
-                                        </h2>
-                                        <div class='dd-site xs-hidden'>{summary}</div>
-                                    </div>",
+                'template' => "<a rel='bookmark' title='{title}' href='{article_url}'>{title}</a>
+                                    <span class='dd-site xs-hidden'>{pub_date}</span>",
                 'itemOptions' => ['tag'=>'li'],
                 'thumbWidth' => 168,
                 'thumbHeight' => 112,
             ]) ?>
         </div>
+        <div class="clear"></div>
 
+        <div class="daodu left">
+            <?= ArticleListView::widget([
+                'dataProvider' => new ArrayDataProvider([
+                    'allModels' => Article::find()->limit(1)->where(['flag_headline'=>1])->limit(5)->with('category')->orderBy("sort asc")->all(),
+                ]),
+                'layout' => "<div class='tip'><h4>" . Yii::t('frontend', 'Well-choosen') . "</h4></div>
+                                <ul class=\"dd-list\">
+                                    {items}
+                                </ul>
+                             ",
+                'template' => "<a rel='bookmark' title='{title}' href='{article_url}'>{title}</a>
+                                    <span class='dd-site xs-hidden'>{pub_date}</span>",
+                'itemOptions' => ['tag'=>'li'],
+                'thumbWidth' => 168,
+                'thumbHeight' => 112,
+            ]) ?>
+        </div>
+        <div class="daodu right">
+            <?= ArticleListView::widget([
+                'dataProvider' => new ArrayDataProvider([
+                    'allModels' => Article::find()->limit(1)->where(['flag_headline'=>1])->limit(5)->with('category')->orderBy("sort asc")->all(),
+                ]),
+                'layout' => "<div class='tip'><h4>" . Yii::t('frontend', 'Well-choosen') . "</h4></div>
+                                <ul class=\"dd-list\">
+                                    {items}
+                                </ul>
+                             ",
+                'template' => "<a rel='bookmark' title='{title}' href='{article_url}'>{title}</a>
+                                    <span class='dd-site xs-hidden'>{pub_date}</span>",
+                'itemOptions' => ['tag'=>'li'],
+                'thumbWidth' => 168,
+                'thumbHeight' => 112,
+            ]) ?>
+        </div>
+        <div class="clear"></div>
+                <? } else {?>
+        <div class="daodu right">
         <header class="archive-header"><h1><?=$type?></h1></header>
         <?= ArticleListView::widget([
             'dataProvider' => $dataProvider,
         ]) ?>
+        </div>
+        <? }?>
     </div>
 </div>
 <?php JsBlock::begin() ?>

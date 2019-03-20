@@ -12,6 +12,7 @@ namespace frontend\widgets;
 use yii;
 use yii\helpers\Url;
 use frontend\models\Menu;
+use common\models\Category;
 
 class MenuView extends \yii\base\Widget
 {
@@ -44,7 +45,9 @@ class MenuView extends \yii\base\Widget
             if ($menu->parent_id == 0) {
                 $url = $menu->getMenuUrl();
                 $currentMenuClass = '';
-                $category = "/?cat=".Yii::$app->params['category'];
+                if($url != Url::to(['article/index'])){ // 如果为首页，则不进行转换，这样不会匹配到首页
+                    $category = Url::to(['article/index', 'cat'=> Yii::$app->params['category']]);
+                }
                 if ($url == yii::$app->getRequest()->getUrl() ||  $category == $url ) {
                     $currentMenuClass = ' current-menu-item ';
                 }

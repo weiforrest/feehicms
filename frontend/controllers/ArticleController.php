@@ -54,11 +54,13 @@ class ArticleController extends Controller
      */
     public function actionIndex($cat = '')
     {
+        $isIndex = true;
         if ($cat == '') {
             $cat = Yii::$app->getRequest()->getPathInfo();
         }
         $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED];
         if ($cat != '' && $cat != 'index') {
+            $isIndex = false;
             if ($cat == Yii::t('app', 'uncategoried')) {
                 $where['cid'] = 0;
             } else {
@@ -89,6 +91,7 @@ class ArticleController extends Controller
         return $this->render('index', [
             'dataProvider' => $dataProvider,
             'type' => ( !empty($cat) ? Yii::t('frontend', 'Category {cat} articles', ['cat'=>$cat]) : Yii::t('frontend', 'Latest Articles') ),
+            'isIndex' => $isIndex
         ]);
     }
 
