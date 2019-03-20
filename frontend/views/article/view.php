@@ -39,6 +39,9 @@ $this->registerMetaTag(['name' => 'tags', 'content' => call_user_func(function()
 $this->registerMetaTag(['property' => 'article:author', 'content' => $model->author_name]);
 $categoryName = $model->category ? $model->category->name : Yii::t('app', 'uncategoried');
 
+//传递分类到layout中
+Yii::$app->params['category']= $model->category->alias;
+
 ViewAsset::register($this);
 ?>
 <div class="content-wrap">
@@ -46,7 +49,7 @@ ViewAsset::register($this);
         <div class="breadcrumbs">
             <a title="<?=Yii::t('frontend', 'Return Home')?>" href="<?= Yii::$app->getHomeUrl() ?>"><i class="fa fa-home"></i></a>
             <small>&gt;</small>
-            <a href="<?= Url::to(['article/index', 'cat' => $categoryName]) ?>"><?= $categoryName ?></a>
+            <a href="<?= Url::to(['article/index', 'cat' => $model->category->alias]) ?>"><?= $categoryName ?></a>
             <small>&gt;</small>
             <span class="muted"><?= $model->title ?></span>
         </div>

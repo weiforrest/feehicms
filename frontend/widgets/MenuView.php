@@ -44,7 +44,8 @@ class MenuView extends \yii\base\Widget
             if ($menu->parent_id == 0) {
                 $url = $menu->getMenuUrl();
                 $currentMenuClass = '';
-                if ($url == yii::$app->getRequest()->getUrl()) {
+                $category = "/?cat=".Yii::$app->params['category'];
+                if ($url == yii::$app->getRequest()->getUrl() ||  $category == $url ) {
                     $currentMenuClass = ' current-menu-item ';
                 }
                 $submenu = $this->getSubMenu($menus, $menu->id);
@@ -85,6 +86,7 @@ class MenuView extends \yii\base\Widget
                 if ($menu['url'] == Yii::$app->controller->id . '/' . Yii::$app->controller->action->id) {
                     $currentMenuClass = ' current-menu-item ';
                 } else {
+
                     if (yii::$app->request->getPathInfo() == $menu['url']) {
                         $currentMenuClass = ' current-menu-item ';
                     }
