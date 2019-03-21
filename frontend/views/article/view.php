@@ -79,12 +79,6 @@ ViewAsset::register($this);
 
         <article class="article-content">
             <?= $model->articleContent->content ?>
-            <p>
-                <?= Yii::t('frontend', 'Reproduced please indicate the source') ?>：
-                <a href="<?= Yii::$app->homeUrl ?>" data-original-title="" title=""><?= Yii::$app->feehi->website_title ?></a>
-                »
-                <a href="<?= Url::to(['article/view', 'id' => $model->id]) ?>" data-original-title="" title=""><?= $model->title ?></a>
-            </p>
 
             <div class="article-social">
                 <a href="javascript:;" data-action="ding" data-id="<?=$model->id?>" like-url="<?=Url::to(['article/like'])?>" id="Addlike" class="action"><i class="fa fa-heart-o"></i><?=Yii::t('frontend', 'Like')?> (<span class="count"><?= $model->getArticleLikeCount() ?></span>)</a>
@@ -133,6 +127,10 @@ ViewAsset::register($this);
             </div>
         </div>
 
+        <?php 
+        //游客不能评论
+        $isGuest = Yii::$app->getUser()->getIsGuest();
+        if(!$isGuest){ ?>
         <div id="respond" class="no_webshot">
             <form action="" method="post" id="commentform">
                 <?php $form = ActiveForm::begin(); ?>
@@ -141,12 +139,10 @@ ViewAsset::register($this);
                     <div class="comt-avatar pull-left">
                         <img src="https://secure.gravatar.com/avatar/" class="avatar avatar-108" height="50" width="50">
                     </div>
-                    <div class="comt-author pull-left"><?php if (Yii::$app->getUser()->getIsGuest()) {
-                            echo Yii::t('frontend', 'Guest');
-                        } else {
-                            echo Yii::$app->getUser()->getIdentity()->username;
-                        } ?> <span><?= Yii::t('frontend', 'Post my comment') ?></span> &nbsp;
-                        <a class="switch-author" href="javascript:void(0)" data-type="switch-author" style="font-size:12px;"><?= Yii::t('frontend', 'Change account') ?></a>
+                    <div class="comt-author pull-left">
+                        <?= Yii::$app->getUser()->getIdentity()->username;
+                         ?>
+                         <span><?= Yii::t('frontend', 'Post my comment') ?></span> &nbsp;
                     </div>
                     <a id="cancel-comment-reply-link" class="pull-right" href="javascript:;"><?= Yii::t('frontend', 'Cancel comment') ?></a>
                 </div>
@@ -183,7 +179,7 @@ ViewAsset::register($this);
                         <ul>
                             <li class="form-inline">
                                 <label class="hide" for="author"><?= Yii::t('app', 'Nickname') ?></label>
-                                <?php if (Yii::$app->getUser()->getIsGuest()) {
+                                <?php if ($isGuest) {
                                     $defaultNickname = Yii::t('frontend', 'Guest');
                                 } else {
                                     $defaultNickname = Yii::$app->getUser()->getIdentity()->username;
@@ -197,6 +193,7 @@ ViewAsset::register($this);
                 </div>
                 <?php ActiveForm::end() ?>
         </div>
+        <?php }?>
         <div id="postcomments">
             <div id="comments">
                 <i class="fa fa-comments-o"></i> <b> (<?= $model->comment_count ?>)</b><?= Yii::t('frontend', 'person posted') ?>
@@ -212,9 +209,11 @@ ViewAsset::register($this);
                             <div class="c-main" id="div-comment-<?= $v['id'] ?>">
                                 <?= $v['content'] ?><br>
                                 <div class="c-meta">
-                                    <span class="c-author"><a href="<?= $v['website_url'] ?>" rel="external nofollow" class="url" target="_blank"><?= empty($v['nickname']) ? '游客' : $v['nickname'] ?></a></span><?= Yii::$app->formatter->asDate($v['created_at']) ?>
+                                    <span class="c-author"><?= empty($v['nickname']) ? '游客' : $v['nickname'] ?></span><?= Yii::$app->formatter->asDate($v['created_at']) ?>
                                     (<?= Yii::$app->getFormatter()->asRelativeTime($v['created_at']) ?>)
+                                    <?php  if(!$isGuest){?>
                                     <a rel="nofollow" class="comment-reply-link" href="" onclick="return addComment.moveForm('div-comment-<?= $v['id'] ?>', '<?= $v['id'] ?>', 'respond','0' )" aria-label="回复给admin">回复</a>
+                                    <?php } ?>
                                 </div>
                             </div>
                         </div>

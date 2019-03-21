@@ -32,7 +32,7 @@ return [
     'Submit comment' => '提交评论',
     'emoj' => '表情',
     'Hi, Please fill' => 'Hi，您需要填写昵称和邮箱！',
-    'person posted' => '个小伙伴在吐槽',
+    'person posted' => '个小伙伴在评论',
     'required' => '必填',
     'Website' => '网址',
     'The above error occurred while the Web server was processing your request.' => '服务器在处理您的请求中发生了以上错误',
