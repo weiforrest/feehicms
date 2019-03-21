@@ -2541,7 +2541,7 @@ iframe {
 }
 
 a {
-    color: #09a8c5;
+    color: #000000;
     text-decoration: none
 }
 
@@ -2591,8 +2591,6 @@ a:hover, a:focus {
 
 .content-wrap {
     width: 100%;
-    float: left;
-    background: #ffffff;
 }
 
 .content article:first-of-type {
@@ -7666,27 +7664,33 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 
 /*精选导读*/
 
+.right {
+    float: right;
+}
+.left {
+    float: left;
+}
 .daodu {
-    display: inline-block;
-    width: 100%
+    display: block;
+    width: 49%;
+    height: 300px;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    background: #FFF
 }
 
 .daodu .dd-list {
     overflow: hidden;
     margin-top: 10px;
     padding: 1% 1%;
-    border: 1px solid #eaeaea;
-    border-radius: 4px;
-    background: #FFF
+    height: 24px;
+    line-height: 24px;
 }
 
 .daodu .dd-list li {
-    float: left;
     margin-top: 1%;
     padding: 1%;
-    width: 47%;
     border-radius: 4px;
-    background: #fff none repeat scroll 0 0
 }
 
 .daodu .dd-list li:nth-child(2n) {
@@ -7705,6 +7709,7 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 .content-ajax .tip h4, .daodu .tip h4 {
     color: #7a6f6f;
     font-weight: 400;
+    margin-left: 10px;
     font-size: 22px;
     line-height: 1
 }
@@ -7741,12 +7746,9 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 }
 
 .dd-site {
-    overflow: hidden;
-    padding-top: 12px;
-    height: 36px;
     color: #888;
-    font-size: 12px;
-    line-height: 18px
+    float: right;
+    font-size: 14px;
 }
 
 /*幻灯片*/
@@ -7754,9 +7756,17 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 .slick_bor {
     display: block;
     position: relative;
-    width: 100%;
+    width: 49%;
     margin-bottom: 10px;
+    background: #ffffff;
+    border-radius:4px;
+    border:1px solid #eaeaea;
 }
+
+.clear{
+    clear:both;
+}
+
 
 .slick {
     height: 300px;
