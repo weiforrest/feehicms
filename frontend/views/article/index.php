@@ -19,81 +19,65 @@ use frontend\widgets\ScrollPicView;
 use common\widgets\JsBlock;
 use frontend\assets\IndexAsset;
 use yii\data\ArrayDataProvider;
+use common\models\Category;
 
 IndexAsset::register($this);
 $this->title = Yii::$app->feehi->website_title;
 ?>
 <div class="content-wrap">
     <div class="content">
-        <? if($isIndex) { ?>
+        <?php if($isIndex) { ?>
         <div class="slick_bor left">
             <?= ScrollPicView::widget([
                 'banners' => Options::getBannersByType('index'),
             ]) ?>
             <div class="ws_shadow"></div>
         </div>
-        <div class="daodu right">
-            <?= ArticleListView::widget([
-                'dataProvider' => new ArrayDataProvider([
-                    'allModels' => Article::find()->limit(1)->where(['flag_headline'=>1])->limit(5)->with('category')->orderBy("sort asc")->all(),
-                ]),
-                'layout' => "<div class='tip'><h4>" . Yii::t('frontend', 'Well-choosen') . "</h4></div>
-                                <ul class=\"dd-list\">
-                                    {items}
-                                </ul>
-                             ",
-                'template' => "<a rel='bookmark' title='{title}' href='{article_url}'>{title}</a>
-                                    <span class='dd-site xs-hidden'>{pub_date}</span>",
-                'itemOptions' => ['tag'=>'li'],
-                'thumbWidth' => 168,
-                'thumbHeight' => 112,
-            ]) ?>
-        </div>
-        <div class="clear"></div>
 
-        <div class="daodu left">
+        <?php 
+            $categorys = Category::find()
+                ->asArray()
+                ->all();
+            $isright = true;
+            foreach($categorys as $category) {
+            $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED, 'cid' => $category["id"]];
+            $articles = Article::find()->limit(9)->with('category')->where($where)->orderBy("sort asc")->all();
+                ?>
+
+            <div class="zhuye <?= $isright? "right" : "left"?>">
+            <div class='tip'><h4><?= $category["name"]?></h4></div>
             <?= ArticleListView::widget([
                 'dataProvider' => new ArrayDataProvider([
-                    'allModels' => Article::find()->limit(1)->where(['flag_headline'=>1])->limit(5)->with('category')->orderBy("sort asc")->all(),
+                    'allModels' => $articles,
                 ]),
-                'layout' => "<div class='tip'><h4>" . Yii::t('frontend', 'Well-choosen') . "</h4></div>
-                                <ul class=\"dd-list\">
+                'layout' => " <ul>
                                     {items}
                                 </ul>
                              ",
-                'template' => "<a rel='bookmark' title='{title}' href='{article_url}'>{title}</a>
-                                    <span class='dd-site xs-hidden'>{pub_date}</span>",
+                'template' => "<a href='{article_url}'>{title}</a>
+                                    <span class='right'>{pub_date}</span><span class='clear'></span>",
                 'itemOptions' => ['tag'=>'li'],
                 'thumbWidth' => 168,
                 'thumbHeight' => 112,
             ]) ?>
-        </div>
-        <div class="daodu right">
-            <?= ArticleListView::widget([
-                'dataProvider' => new ArrayDataProvider([
-                    'allModels' => Article::find()->limit(1)->where(['flag_headline'=>1])->limit(5)->with('category')->orderBy("sort asc")->all(),
-                ]),
-                'layout' => "<div class='tip'><h4>" . Yii::t('frontend', 'Well-choosen') . "</h4></div>
-                                <ul class=\"dd-list\">
-                                    {items}
-                                </ul>
-                             ",
-                'template' => "<a rel='bookmark' title='{title}' href='{article_url}'>{title}</a>
-                                    <span class='dd-site xs-hidden'>{pub_date}</span>",
-                'itemOptions' => ['tag'=>'li'],
-                'thumbWidth' => 168,
-                'thumbHeight' => 112,
-            ]) ?>
-        </div>
-        <div class="clear"></div>
-                <? } else {?>
-        <div class="daodu right">
+            </div>
+            <?php if($isright){
+                        echo '<div class="clear"></div>';
+                        $isright = false;
+                    }else{
+                        $isright = true;
+                    }
+            }
+
+            ?>
+                <?php } else {?>
+        <div class="daodu ">
         <header class="archive-header"><h1><?=$type?></h1></header>
         <?= ArticleListView::widget([
             'dataProvider' => $dataProvider,
         ]) ?>
         </div>
-        <? }?>
+        <?php }?>
     </div>
 </div>
 <?php JsBlock::begin() ?>

@@ -2546,7 +2546,7 @@ a {
 }
 
 a:hover, a:focus {
-    color: #007046;
+    color: #d9534f;
     text-decoration: none
 }
 
@@ -7670,12 +7670,48 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 .left {
     float: left;
 }
-.daodu {
+.zhuye {
     display: block;
     width: 49%;
     height: 300px;
     border: 1px solid #eaeaea;
     border-radius: 4px;
+    margin-bottom: 15px;
+    background: #FFF
+}
+.zhuye ul{
+    margin-left: 20px;
+    margin-right: 10px;
+    line-height: 40px; 
+}
+.zhuye li {
+    margin: 5px 0;
+}
+.zhuye h4{
+    background: #006ace;
+    width: 30%;
+    color: #eef8ff;
+    line-height: 40px; 
+    font-size: 18px;
+    padding-left: 5%;
+    margin: 0 0 10px 0;
+    border-bottom-right-radius: 5px
+
+}
+.zhuye li{
+    font-size:16px;
+}
+.zhuye span{
+    color:#aaa; 
+    font-size:14px;
+
+}
+.daodu {
+    display: block;
+    /* width: 49%; */
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    margin-bottom: 15px;
     background: #FFF
 }
 
@@ -7757,7 +7793,7 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     display: block;
     position: relative;
     width: 49%;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     background: #ffffff;
     border-radius:4px;
     border:1px solid #eaeaea;

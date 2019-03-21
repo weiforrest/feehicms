@@ -797,14 +797,14 @@ eval(function (h, b, i, d, g, f) {
                 document.documentElement.scrollTop + document.body.scrollTop > 200 ? w.fadeIn() : w.fadeOut()
             })
         }
-        var t = a("#nav-header").offset().top;
-        a(window).scroll(function () {
-            if (a(window).scrollTop() > t && a(window).width() > 719) {
-                a("#nav-header").addClass("fixed")
-            } else {
-                a("#nav-header").removeClass("fixed")
-            }
-        });
+        // var t = a("#nav-header").offset().top;
+        // a(window).scroll(function () {
+        //     if (a(window).scrollTop() > t && a(window).width() > 719) {
+        //         a("#nav-header").addClass("fixed")
+        //     } else {
+        //         a("#nav-header").removeClass("fixed")
+        //     }
+        // });
         a(".navbar .nav:first").after('<div class="screen-mini"><button data-type="screen-nav" class="btn btn-inverse screen-nav"><i class="fa fa-list"></i></button></div>');
         a("body").append('<div class="rollto"><button class="btn btn-inverse" data-type="totop" title="回顶部"><i class="fa fa-arrow-up"></i></button>' + (_deel.commenton ? '<button class="btn btn-inverse" data-type="torespond" title="发评论"><i class="fa fa-comment-o"></i></button>' : "") + "</div>");
         (function (w) {
@@ -1118,30 +1118,30 @@ eval(function (h, b, i, d, g, f) {
     })
 })(window.jQuery);
 $(document).ready(function () {
-    var withd_p = document.body.clientWidth;
-    if (withd_p > 980) {
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 108) {
-                $("#nav-header").addClass("shadow");
-                $(".logo-site").css("margin-top", "5px");
-                $("#site-nav a").css("padding", "10px");
-                $("#site-nav .down-menu ul").css("padding-top", "5px");
-            } else {
-                $("#nav-header").removeClass("shadow");
-                $(".logo-site").css("margin-top", "10px");
-                $("#site-nav a").css("padding", "13px");
-                $("#site-nav .down-menu ul").css("padding-top", "20px");
-            }
-        })
-    } else {
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 108) {
-                $("#nav-header").addClass("shadow");
-            } else {
-                $("#nav-header").removeClass("shadow");
-            }
-        })
-    }
+    // var withd_p = document.body.clientWidth;
+    // if (withd_p > 980) {
+    //     $(window).scroll(function () {
+    //         if ($(this).scrollTop() > 108) {
+    //             $("#nav-header").addClass("shadow");
+    //             $(".logo-site").css("margin-top", "5px");
+    //             $("#site-nav a").css("padding", "10px");
+    //             $("#site-nav .down-menu ul").css("padding-top", "5px");
+    //         } else {
+    //             $("#nav-header").removeClass("shadow");
+    //             $(".logo-site").css("margin-top", "10px");
+    //             $("#site-nav a").css("padding", "13px");
+    //             $("#site-nav .down-menu ul").css("padding-top", "20px");
+    //         }
+    //     })
+    // } else {
+    //     $(window).scroll(function () {
+    //         if ($(this).scrollTop() > 108) {
+    //             $("#nav-header").addClass("shadow");
+    //         } else {
+    //             $("#nav-header").removeClass("shadow");
+    //         }
+    //     })
+    // }
     $(".nav-search_1").click(function () {
         $(window).scroll(function () {
             if ($(this).scrollTop() > 108) {
