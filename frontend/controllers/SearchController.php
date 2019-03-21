@@ -26,7 +26,7 @@ class SearchController extends Controller
     {
         $where = ['type' => Article::ARTICLE];
         $query = Article::find()->select([])->where($where);
-        $keyword = htmlspecialchars(Yii::$app->getRequest()->get('q'));
+        $keyword = htmlspecialchars(Yii::$app->getRequest()->post('q'));
         $query->andFilterWhere(['like', 'title', $keyword]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
