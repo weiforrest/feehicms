@@ -38,8 +38,9 @@ class ArticleController extends \yii\web\Controller
                 'class' => IndexAction::className(),
                 'data' => function(){
                     /** @var $searchModel ArticleSearch */
+                    $currentUserId = Yii::$app->getUser()->id;
                     $searchModel = Yii::createObject( ArticleSearch::className() );
-                    $dataProvider = $searchModel->search( Yii::$app->getRequest()->getQueryParams() );
+                    $dataProvider = $searchModel->search( Yii::$app->getRequest()->getQueryParams() ,ArticleSearch::ARTICLE, $currentUserId);
                     return [
                         'dataProvider' => $dataProvider,
                         'searchModel' => $searchModel,

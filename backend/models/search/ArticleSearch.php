@@ -68,7 +68,7 @@ class ArticleSearch extends Article
      * @return ActiveDataProvider
      * @throws \yii\base\InvalidConfigException
      */
-    public function search($params, $type = self::ARTICLE)
+    public function search($params, $type = self::ARTICLE, $userid = 1)
     {
         $query = Article::find()->select([])->where(['type' => $type])->with('category')->joinWith("articleContent");
         /** @var $dataProvider ActiveDataProvider */
@@ -85,6 +85,9 @@ class ArticleSearch extends Article
         $this->load($params);
         if (! $this->validate()) {
             return $dataProvider;
+        }
+        if($userid !== 1) {
+            $query->andFilterWhere(['author_id' => $userid]);
         }
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['id' => $this->id])
