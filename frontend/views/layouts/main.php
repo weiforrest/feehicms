@@ -65,6 +65,8 @@ AppAsset::register($this);
                     <a target="_blank" href="<?=Url::to(['page/view', 'name'=>'about'])?>"><?= Yii::t('frontend', 'About us') ?></a>
                     |
                     <a target="_blank" href="<?=Url::to(['page/view', 'name'=>'contact'])?>"><?= Yii::t('frontend', 'Contact us') ?></a>
+                    |
+                    <a id="adminurl" target="_blank" href="/admin"><?= "后台管理"?></a>
                 </ul>
             </div>
         </div>

@@ -2545,6 +2545,10 @@ a {
     text-decoration: none
 }
 
+a:visited{
+    color:#aaa;
+}
+
 a:hover, a:focus {
     color: #d9534f;
     text-decoration: none
@@ -7925,6 +7929,17 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 
 .top-menu a {
     color: #000000;
+}
+
+#adminurl {
+    background: #2f889a;
+    padding: 4px;
+    border-radius: 4px;
+    color:#fff;
+
+}
+#adminurl:hover{
+    color:#000;
 }
 
 .top-menu a:hover {
