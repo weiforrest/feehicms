@@ -105,20 +105,6 @@ $identity = Yii::$app->getUser()->getIdentity();
                     <li class="dropdown hidden-xs">
                         <a class="right-sidebar-toggle" aria-expanded="false"><i class="fa fa-tasks"></i> <?= Yii::t('app', 'Theme') ?></a>
                     </li>
-                    <li class="hidden-xs">
-                        <select onchange="location.href=this.options[this.selectedIndex].value;">
-                            <option
-                                <?php if (Yii::$app->language == 'zh-CN') {
-                                echo 'selected';
-                                } ?> value="<?= Url::to(['site/language', 'lang' => 'zh-CN']) ?>">简体中文
-                            </option>
-                            <option
-                                <?php if (Yii::$app->language == 'en-US') {
-                                    echo "selected";
-                                } ?> value="<?= Url::to(['site/language', 'lang' => 'en-US']) ?>">English
-                            </option>
-                        </select>
-                    </li>
                 </ul>
             </nav>
         </div>
@@ -146,7 +132,7 @@ $identity = Yii::$app->getUser()->getIdentity();
             <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="<?= Url::to(['site/main']) ?>" frameborder="0" data-id="<?= Url::to(['site/main']) ?>" seamless></iframe>
         </div>
         <div class="footer">
-            <div class="pull-right">&copy; <?=date('Y')?> <a href="http://blog.feehi.com/" target="_blank">黄爽</a></div>
+            <div class="pull-right">&copy; <?=date('Y')?> 黄爽</div>
         </div>
     </div>
     <!--右侧部分结束-->
