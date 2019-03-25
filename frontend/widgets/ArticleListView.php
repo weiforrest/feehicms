@@ -60,20 +60,16 @@ class ArticleListView extends \yii\widgets\ListView
     /**
      * @var string 模板
      */
-    public $template = "<div class='focus'>
-                                   <a target='_blank' href='{article_url}'>
-                                        <img width='186px' height='112px' class='thumb' src='{img_url}' alt='{title}'></a>
-                               </div>
-                               <header>
-                                   <a class='label label-important' href='{category_url}'>{category}<i class='label-arrow'></i></a>
-                                   <h2><a target='_blank' href='{article_url}' title='{title}'>{title}</a></h2>
-                               </header>
-                               <p class='auth-span'>
-                                   <span class='muted'><i class='fa fa-clock-o'></i> {pub_date}</span>
-                                   <span class='muted'><i class='fa fa-eye'></i> {scan_count}℃</span>
-                                   <span class='muted'><i class='fa fa-comments-o'></i> <a target='_blank' href='{comment_url}'>{comment_count}评论</a></span>
-                               </p>
-                               <span class='note'> {summary}</span>";
+    public $template = " <p class='auth-span' style='float:right'>
+                                <span class='muted'><i class='fa fa-clock-o'></i> {pub_date}</span>
+                                <span class='muted'><i class='fa fa-eye'></i> {scan_count}℃</span>
+                                <span class='muted'><i class='fa fa-comments-o'></i> <a target='_blank' href='{comment_url}'>{comment_count}评论</a></span>
+                            </p>
+                        <header>
+                            <a class='label label-important' href='{category_url}'>{category}<i class='label-arrow'></i></a>
+                            <h2><a target='_blank' href='{article_url}' title='{title}'>{title}</a></h2>
+                        </header>
+                        <span class='note'> {summary}</span>";
 
     /**
      * @inheritdoc
@@ -94,14 +90,14 @@ class ArticleListView extends \yii\widgets\ListView
             $this->itemView = function ($model, $key, $index) {
                 /** @var $model \frontend\models\Article */
                 $categoryName = $model->category ? $model->category->name : yii::t('app', 'uncategoried');
-                $categoryUrl = Url::to(['article/index', 'cat' => $categoryName]);
-                $imgUrl = $model->getThumbUrlBySize($this->thumbWidth, $this->thumbHeight);
+                $categoryAlias = $model->category ? $model->category->alias : yii::t('app', 'uncategoried');
+                $categoryUrl = Url::to(['article/index', 'cat' => $categoryAlias]);
                 $articleUrl = Url::to(['article/view', 'id' => $model->id]);
                 $summary = StringHelper::truncate($model->summary, $this->summaryLength);
                 $title = StringHelper::truncate($model->title, $this->titleLength);
                 return str_replace([
                     '{article_url}',
-                    '{img_url}',
+                    // '{img_url}',
                     '{category_url}',
                     '{title}',
                     '{summary}',
@@ -112,7 +108,7 @@ class ArticleListView extends \yii\widgets\ListView
                     '{comment_url}'
                 ], [
                     $articleUrl,
-                    $imgUrl,
+                    // $imgUrl,
                     $categoryUrl,
                     $title,
                     $summary,
