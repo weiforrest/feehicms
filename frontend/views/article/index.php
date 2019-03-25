@@ -36,6 +36,7 @@ $this->title = Yii::$app->feehi->website_title;
 
         <?php 
             $categorys = Category::find()
+                ->orderBy("sort asc,parent_id asc")
                 ->asArray()
                 ->all();
             $isright = true;
