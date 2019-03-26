@@ -42,7 +42,7 @@ $this->title = Yii::$app->feehi->website_title;
             $isright = true;
             foreach($categorys as $category) {
             $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED, 'cid' => $category["id"]];
-            $articles = Article::find()->limit(9)->with('category')->where($where)->orderBy("sort asc")->all();
+            $articles = Article::find()->limit(9)->with('category')->where($where)->orderBy("created_at desc")->all();
                 ?>
 
             <div class="zhuye <?= $isright? "right" : "left"?>">

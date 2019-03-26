@@ -7456,10 +7456,38 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     max-width : 1200px;
 }
 
+#daohang {
+    z-index: 9999;
+    position: absolute;
+    width:200px;
+    left:84px;
+    min-height:40px;
+    min-width:80px;
+    background:#0063a4;
+}
+.hide {
+    display:none;
+}
+
+.flink{
+    color:#000;
+    padding:5px;
+    padding-top: 10px;
+}
+.cur {
+    color:#fff;
+    background:#0063a4;
+}
 .top-menu {
     float: right;
     margin: 0 8px 0 0
 }
+.fr_link a{
+    color:rgb(157,205,239);
+    padding:8px 5px;
+}
+
+
 
 .top-menu li {
     float: left;
@@ -7468,7 +7496,7 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 }
 
 .top-menu a {
-    color: #000000;
+    color: #000;
 }
 
 #adminurl {
@@ -7505,11 +7533,11 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 }
 
 #user-profile a:hover {
-    color: #007046
+    color: #fff;
 }
 
 #nav-header {
-    background: url("/static/images/banner.jpg") no-repeat center;
+    background: url("/static/images/banner copy.jpg") no-repeat center;
     height: 250px;
     width: 100%;
     z-index: 999
