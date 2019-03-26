@@ -72,26 +72,6 @@ AppAsset::register($this);
         </div>
     </nav>
     <div id="nav-header" class="">
-        <div id="top-menu">
-            <div id="top-menu_1">
-                <span class="nav-search_1"><i class="fa fa-navicon"></i></span>
-                <hgroup class="logo-site">
-                    <h1 class="site-title">
-                        <a href="<?= Yii::$app->getHomeUrl() ?>">
-                        <img style="height:150px" src="<?=Yii::$app->getRequest()->getBaseUrl()?>/static/images/logo.png" alt="<?= Yii::$app->feehi->website_title ?>">
-                        <img class="title_img" style="height:150px" src="<?=Yii::$app->getRequest()->getBaseUrl()?>/static/images/logofei.png" alt="<?= Yii::$app->feehi->website_title ?>">
-                        </a>
-                        <h1 class="logo_title"><?= Yii::$app->feehi->website_title."信息网" ?></h1>
-                    </h1>
-                </hgroup>
-                <h1 class="logo_sub">
-                        <span>对党忠诚</span>
-                        <span>服务人民</span>
-                        <span>执法公正</span>
-                        <span>纪律严明</span>
-                        </h1>
-            </div>
-        </div>
     </div>
     <div id="site-nav-wrap">
         <nav id="site-nav" class="main-nav">
