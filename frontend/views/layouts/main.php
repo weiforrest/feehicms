@@ -127,9 +127,9 @@ AppAsset::register($this);
 <footer class="footer">
     <div class="footer-inner">
         <p>
-            宜春市公安局特巡警支队 <?= Yii::t('frontend', 'Copyright, all rights reserved') ?> © <?=date('Y')?>&nbsp;&nbsp;
+            宜春市公安局特警支队 <?= Yii::t('frontend', 'Copyright, all rights reserved') ?> © <?=date('Y')?>&nbsp;&nbsp;
         </p>
-        <p><?=Yii::$app->feehi->website_icp?> Powered by 宜春市公安局特巡警支队政治处</p>
+        <p><?=Yii::$app->feehi->website_icp?> Powered by 宜春市公安局特警支队政治处</p>
     </div>
 </footer>
 
