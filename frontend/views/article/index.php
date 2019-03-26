@@ -25,8 +25,8 @@ IndexAsset::register($this);
 $this->title = Yii::$app->feehi->website_title;
 ?>
 <div class="content-wrap">
-    <div class="content">
-        <?php if($isIndex) { ?>
+    <?php if($isIndex) { ?>
+    <div class="content" style="width:1200px">
         <div class="slick_bor left">
             <?= ScrollPicView::widget([
                 'banners' => Options::getBannersByType('index'),
@@ -72,6 +72,7 @@ $this->title = Yii::$app->feehi->website_title;
 
             ?>
                 <?php } else {?>
+        <div class="content">
         <div class="daodu ">
         <header class="archive-header"><h1><?=$type?></h1></header>
         <?= ArticleListView::widget([
