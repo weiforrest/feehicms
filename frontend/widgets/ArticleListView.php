@@ -25,7 +25,7 @@ class ArticleListView extends \yii\widgets\ListView
     /**
      * @var int 标题截取长度
      */
-    public $titleLength = 20;
+    public $titleLength = 24;
 
     /**
      * @var int summary截取长度
@@ -66,7 +66,6 @@ class ArticleListView extends \yii\widgets\ListView
                                 <span class='muted'><i class='fa fa-comments-o'></i> <a target='_blank' href='{comment_url}'>{comment_count}评论</a></span>
                             </p>
                         <header>
-                            <a class='label label-important' href='{category_url}'>{category}<i class='label-arrow'></i></a>
                             <h2><a target='_blank' href='{article_url}' title='{title}'>{title}</a></h2>
                         </header>
                         <span class='note'> {summary}</span>";
@@ -98,24 +97,20 @@ class ArticleListView extends \yii\widgets\ListView
                 return str_replace([
                     '{article_url}',
                     // '{img_url}',
-                    '{category_url}',
                     '{title}',
                     '{summary}',
                     '{pub_date}',
                     '{scan_count}',
                     '{comment_count}',
-                    '{category}',
                     '{comment_url}'
                 ], [
                     $articleUrl,
                     // $imgUrl,
-                    $categoryUrl,
                     $title,
                     $summary,
                     date('Y-m-d', $model->created_at),
                     $model->scan_count * 100,
                     $model->comment_count,
-                    $categoryName,
                     $articleUrl . "#comments"
                 ], $this->template);
             };

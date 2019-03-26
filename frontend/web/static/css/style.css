@@ -7252,11 +7252,23 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 }
 .daodu {
     display: block;
-    /* width: 49%; */
+    width: 940px;
+    margin: auto;
     border: 1px solid #eaeaea;
     border-radius: 4px;
     margin-bottom: 15px;
     background: #FFF
+}
+
+.archive-header h1 {
+    background: #006ace;
+    padding: 5px 20px 5px 50px;
+    min-width: 150px;
+    max-width: 50%;
+    display: inline-block;
+    margin:0px;
+    color:#eef8ff;
+    border-bottom-right-radius: 5px;
 }
 
 .daodu .dd-list {

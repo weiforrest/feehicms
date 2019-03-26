@@ -13,6 +13,7 @@ use Yii;
 use frontend\models\Article;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
+use yii\helpers\StringHelper;
 
 class SearchController extends Controller
 {
@@ -37,6 +38,7 @@ class SearchController extends Controller
                 ]
             ]
         ]);
+        $keyword = StringHelper::truncate($keyword, 15);
         return $this->render('/article/index', [
             'dataProvider' => $dataProvider,
             'type' => Yii::t('frontend', 'Search keyword {keyword} results', ['keyword'=>$keyword]),

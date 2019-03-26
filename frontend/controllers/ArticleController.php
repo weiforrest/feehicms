@@ -90,7 +90,7 @@ class ArticleController extends Controller
         ]);
         return $this->render('index', [
             'dataProvider' => $dataProvider,
-            'type' => ( !empty($cat) ? Yii::t('frontend', 'Category {cat} articles', ['cat'=>$cat]) : Yii::t('frontend', 'Latest Articles') ),
+            'type' => ( !empty($cat) ?  $category->name: Yii::t('frontend', 'Latest Articles') ),
             'isIndex' => $isIndex
         ]);
     }

@@ -66,7 +66,7 @@ AppAsset::register($this);
                         </span>
                     </span>
                     <div id="links" style="display:inline">
-                    <span  class="flink">网站链接</span>
+                    <span  class="flink">导航链接</span>
                     <div id="daohang" class="fr_link hide">
                         <?php 
                         $links = FriendlyLink::find()->where(['status' => FriendlyLink::DISPLAY_YES])->orderBy("sort asc, id asc")->asArray()->all();
