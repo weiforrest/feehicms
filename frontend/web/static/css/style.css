@@ -2611,6 +2611,8 @@ a:hover, a:focus {
 
 .content {
     /* margin-right: 380px; */
+    margin: auto;
+    width:940px;
 }
 
 .content-page {
