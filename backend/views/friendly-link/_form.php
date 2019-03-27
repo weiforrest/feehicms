@@ -28,7 +28,7 @@ $this->title = "Friendly Links";
                     ]
                 ]); ?>
                 <div class="hr-line-dashed"></div>
-                <?= $form->field($model, 'name')->textInput(['maxlength' => 64]) ?>
+                <?= $form->field($model, 'name')->textInput(['maxlength' => 64, 'placeholder' => "请不要超过8个字符"]) ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'image')->imgInput(['style' => "max-width:200px;max-height:200px"]) ?>
                 <div class="hr-line-dashed"></div>
