@@ -54,16 +54,9 @@ ViewAsset::register($this);
             <span class="muted"><?= $model->title ?></span>
         </div>
         <header class="article-header">
-            <h1 class="article-title"><a href="<?= Url::to(['article/view', 'id' => $model->id]) ?>"><?= $model->title ?></a></h1>
+            <h1 class="article-title"><?= $model->title ?></h1>
             <div class="meta">
-                <span id="mute-category" class="muted"><i class="fa fa-list-alt"></i>
-                    <a href="<?= Url::to([
-                        'article/index',
-                        'cat' => $categoryName
-                    ]) ?>"> <?= $categoryName ?>
-                    </a>
-                </span>
-                <span class="muted"><i class="fa fa-user"></i> <a href="">admin</a></span>
+                <span class="muted"><i class="fa fa-user"></i> <?= $model->author_name ?></span>
                 <time class="muted"><i class="fa fa-clock-o"></i> <?= Yii::$app->getFormatter()->asDate($model->created_at) ?></time>
                 <span class="muted"><i class="fa fa-eye"></i> <span id="scanCount"><?= $model->scan_count * 100 ?></span>℃</span>
                 <span class="muted"><i class="fa fa-comments-o"></i>
