@@ -120,13 +120,6 @@ class ArticleController extends Controller
             ->one();//->createCommand()->getRawSql();
         $commentModel = new Comment();
         $commentList = $commentModel->getCommentByAid($id);
-        $recommends = Article::find()
-            ->where(['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED])
-            ->andWhere(['<>', 'thumb', ''])
-            ->orderBy("rand()")
-            ->limit(8)
-            ->with('category')
-            ->all();
         switch ($model->visibility){
             case Constants::ARTICLE_VISIBILITY_COMMENT://评论可见
                 if( Yii::$app->getUser()->getIsGuest() ){
@@ -152,7 +145,6 @@ class ArticleController extends Controller
             'model' => $model,
             'prev' => $prev,
             'next' => $next,
-            'recommends' => $recommends,
             'commentModel' => $commentModel,
             'commentList' => $commentList,
         ]);

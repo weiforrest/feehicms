@@ -109,24 +109,6 @@ ViewAsset::register($this);
             <?php } ?>
         </nav>
 
-        <div class="related_top">
-            <div class="related_posts">
-                <?= ArticleListView::widget([
-                    'dataProvider' => new ArrayDataProvider([
-                        'allModels' => $recommends,
-                    ]),
-                    'layout' => "<ul class='related_img'><h2>" . Yii::t('frontend', 'Related Recommends') . "</h2>{items}</ul>",
-                    'template' => "<a href='{article_url}' title='{title}' target='_blank'>
-                                        <img src='{img_url}' alt='{title}'><br>
-                                        <span class='r_title'>{title}</span>
-                                     </a>",
-                    'itemOptions' => ['tag'=>'li', 'class'=>'related_box'],
-                    'thumbWidth' => 185,
-                    'thumbHeight' => 110,
-                ]) ?>
-            </div>
-        </div>
-
         <?php 
         //游客不能评论
         $isGuest = Yii::$app->getUser()->getIsGuest();
