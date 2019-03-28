@@ -20,6 +20,7 @@ use common\widgets\JsBlock;
 use frontend\assets\IndexAsset;
 use yii\data\ArrayDataProvider;
 use common\models\Category;
+use frontend\widgets\DutyView;
 
 IndexAsset::register($this);
 $this->title = Yii::$app->feehi->website_title;
@@ -27,6 +28,8 @@ $this->title = Yii::$app->feehi->website_title;
 <div class="content-wrap">
     <?php if($isIndex) { ?>
     <div class="content" style="width:1200px">
+        <?= DutyView::widget();
+        ?>
         <div class="slick_bor left">
             <?= ScrollPicView::widget([
                 'banners' => Options::getBannersByType('index'),

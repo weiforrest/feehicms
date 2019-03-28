@@ -126,6 +126,7 @@ AppAsset::register($this);
             <p>
                 宜春市公安局特警支队 <?= Yii::t('frontend', 'Copyright, all rights reserved') ?> © <?= date('Y') ?>&nbsp;&nbsp;
             </p>
+            <p>为保证最佳的浏览体验，请使用Google Chrome浏览器</p>
             <p><?= Yii::$app->feehi->website_icp ?> Powered by 宜春市公安局特警支队政治处</p>
         </div>
     </footer>

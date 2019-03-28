@@ -16,6 +16,7 @@ use yii\helpers\ArrayHelper;
 use yii\helpers\FileHelper;
 use yii\web\NotFoundHttpException;
 use yii\web\UploadedFile;
+use function GuzzleHttp\json_decode;
 
 /**
  * This is the model class for table "{{%options}}".
@@ -36,6 +37,7 @@ class Options extends \yii\db\ActiveRecord
     const TYPE_CUSTOM = 1;
     const TYPE_BANNER = 2;
     const TYPE_AD = 3;
+    const TYPE_DUTY = 4;
 
     const CUSTOM_AUTOLOAD_NO = 0;
     const CUSTOM_AUTOLOAD_YES = 1;
