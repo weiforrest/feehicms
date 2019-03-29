@@ -27,7 +27,7 @@ $this->title = Yii::$app->feehi->website_title;
 ?>
 <div class="content-wrap">
     <?php if($isIndex) { ?>
-    <div class="content" style="width:1200px">
+    <div class="content" style="max-width:1000px;min-width:940px">
         <?= DutyView::widget();
         ?>
         <div class="slick_bor left">

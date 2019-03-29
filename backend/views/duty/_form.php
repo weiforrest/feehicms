@@ -35,7 +35,7 @@ use common\widgets\JsBlock;
                 <?= $form->field($model, 'three')->dropDownList(["二大队" => "二大队", "三大队" => "三大队", "四大队" => "四大队", ]) ?>
                 <div class="hr-line-dashed"></div>
 
-                <?= $form->field($model, 'gun')->textInput(['maxlength' => true]) ?>
+                <?= $form->field($model, 'gun')->textInput(['maxlength' => true, 'placeholder'=> '请使用英文逗号","分隔值班民警']) ?>
                 <div class="hr-line-dashed"></div>
 
                 <?= $form->defaultButtons() ?>

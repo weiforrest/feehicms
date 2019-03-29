@@ -2571,7 +2571,7 @@ a:hover, a:focus {
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1000px;
     margin: 0 auto;
     text-align: left;
     *zoom: 1
@@ -2652,7 +2652,7 @@ a:hover, a:focus {
 }
 
 .footer-inner {
-    max-width: 1200px;
+    max-width: 1000px;
     padding: 16px 20px 14px;
     margin: 0 auto;
     color: #aaa;
@@ -3621,7 +3621,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 }
 
 .container-inner {
-    max-width: 1200px;
+    max-width: 1000px;
     width: 100%;
     margin: 0 auto;
     text-align: center;
@@ -3634,7 +3634,7 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
     display: block;
     margin: 0 auto;
     font-size: 16px;
-    max-width: 1200px
+    max-width: 1000px
 }
 
 .navbar .nav.pull-right {
@@ -7224,9 +7224,16 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     margin-bottom: 15px;
+    line-height: 40px;
+    font-size: 18px;
+    text-align: center;
     background: #FFF
 }
-.duty h4{
+/* .duty td{
+    border: 2px groove #0063a4;
+} */
+
+.dutyhead{
     background: #0063a4;
     color: #eef8ff;
     margin: 0px;
@@ -7236,13 +7243,20 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+.dutyblod{
+    font-weight:bold;
+    color:#0063a4;
+}
 .duty p{
-    display: inline-block;
     line-height: 40px;
     font-size: 18px;
-    width:23%;
-    margin: 0px;
     text-align: center;
+}
+.duty span{
+    width:25%;
+    margin: auto;
+    float:left;
+
 }
 
 .zhuye {
@@ -7400,13 +7414,14 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 }
 
 .slick span {
-    bottom: -250px;
-    /* background-color: #aaa; */
+    top:280px;
+    background-color: #fff;
     /* padding: 5px 0; */
-    padding-top: 250px;
-    color: #0063a4;
+    /* padding-top: 250px; */
+    color: #000;
     font-size:18px;
-    width: 588px;
+    width: 460px;
+    height: 20px;
     text-align: center;
     position: absolute;
 }
@@ -7443,7 +7458,7 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 }
 
 .centered-btns_tabs, .large-btns_tabs, .transparent-btns_tabs {
-    bottom: 10px;
+    bottom: 30px;
     left: 50%;
     list-style: outside none none;
     margin-left: -30%;
@@ -7497,8 +7512,8 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     padding-bottom: 5px;
     height: 26px;
     margin: 0 auto;
-    width: 1000px;
-    max-width : 1200px;
+    min-width: 940px;
+    max-width : 1000px;
 }
 
 #daohang {
@@ -7594,8 +7609,8 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 #top-menu {
     margin: 0 auto;
     transition-duration: .5s;
-    width: 1000px;
-    max-width: 1200px;
+    min-width: 940px;
+    max-width: 1000px;
 }
 
 .nav-search {
@@ -7656,8 +7671,8 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 .logo-site {
     overflow: hidden;
     margin: 0 auto;
-    width:1000px;
-    max-width: 1200px;
+    min-width:940px;
+    max-width: 1000px;
     position: relative;
 }
 
@@ -7696,7 +7711,7 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 #site-nav-wrap {
     /*float: right;*/
     width:100%;
-    max-width: 1180px;
+    max-width: 980px;
     margin:auto;
     min-height: 45px
 }
@@ -7882,8 +7897,8 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     margin: 10px auto 5px;
     padding: 10px 20px 20px;
     text-align: center;
-    width: 1000px;
-    max-width:1200px;
+    min-width: 940px;
+    max-width:1000px;
 }
 
 #searchbar {
