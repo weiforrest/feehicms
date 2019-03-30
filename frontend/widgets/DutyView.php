@@ -2,6 +2,7 @@
 namespace frontend\widgets;
 
 use common\models\Duty;
+use Yii;
 class DutyView extends \yii\base\Widget
 {
 
@@ -14,6 +15,15 @@ class DutyView extends \yii\base\Widget
             $duty = Duty::findOne(["duty_time" => date("Y-m-d")]);
             $body="";
             $man = explode(",",$duty->gun);
+            $leaders = Yii::$app->params['leader'];
+            $leaderIdx=0;
+            foreach($leaders as $leader) {
+                if($leader == $duty->leader){
+                    unset($leaders[$leaderIdx]);
+                }
+                $leaderIdx++;
+            }
+            $leaders = implode("、",$leaders);
             if($duty){
             $body = '<div class="duty">
                 <table  width="100%">
@@ -29,7 +39,7 @@ class DutyView extends \yii\base\Widget
                     <td class="dutyblod">'.$duty->getAttributeLabel("leader").'</td>
                     <td>'.$duty->leader.'</td>
                     <td class="dutyblod">其他领导</td>
-                    <td colspan = "3">刘钰坤、廖芳芳、肖坚、李琦辉、唐育平、黄杨敏</td>
+                    <td colspan = "3">'.$leaders.'</td>
                 </tr>
                 <tr>
                     <td rowspan="2" class="dutyblod">值班大队</td>
