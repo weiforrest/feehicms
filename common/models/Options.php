@@ -37,7 +37,7 @@ class Options extends \yii\db\ActiveRecord
     const TYPE_CUSTOM = 1;
     const TYPE_BANNER = 2;
     const TYPE_AD = 3;
-    const TYPE_DUTY = 4;
+    const TYPE_NOTICE = 4;
 
     const CUSTOM_AUTOLOAD_NO = 0;
     const CUSTOM_AUTOLOAD_YES = 1;
@@ -169,6 +169,15 @@ class Options extends \yii\db\ActiveRecord
             $banner['img'] = $cdn->getCdnUrl($banner['img']);
         }
         return $banners;
+    }
+
+    public static function getNotice($name)
+    {
+        $model = Options::findOne(['type'=>self::TYPE_NOTICE, 'name'=>$name, 'autoload'=>Constants::Status_Enable]);
+        if( $model == null ) throw new NotFoundHttpException("None Notice named $name");
+        if( $model->value == '' ) $model->value = '[]';
+        $notice = $model->value;
+        return $notice;
     }
 
     public static function getAdByName($name)

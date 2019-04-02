@@ -18,6 +18,7 @@ use yii\web\Response;
 use yii\swiftmailer\Mailer;
 use yii\web\BadRequestHttpException;
 use yii\web\UnprocessableEntityHttpException;
+use backend\models\form\NoticeForm;
 
 /**
  * Setting controller
@@ -64,6 +65,36 @@ class SettingController extends \yii\web\Controller
 
         $model->getWebsiteSetting();
         return $this->render('website', [
+            'model' => $model
+        ]);
+
+    }
+
+    /**
+     * 公告设置
+     *
+     * @auth - item group=设置 category=运营管理 description=公告设置 sort-get=808 sort-post=808 method=get,post
+     * @return string
+     * @throws \yii\base\InvalidConfigException
+     */
+    public function actionNotice()
+    {
+        $model = Yii::createObject( NoticeForm::className() );
+        if (Yii::$app->getRequest()->getIsPost()) {
+            if ($model->load(Yii::$app->getRequest()->post()) && $model->validate() && $model->setNoticeSetting()) {
+                Yii::$app->getSession()->setFlash('success', Yii::t('app', 'Success'));
+            } else {
+                $errors = $model->getErrors();
+                $err = '';
+                foreach ($errors as $v) {
+                    $err .= $v[0] . '<br>';
+                }
+                Yii::$app->getSession()->setFlash('error', $err);
+            }
+        }
+
+        $model->getNoticeSetting();
+        return $this->render('notice', [
             'model' => $model
         ]);
 

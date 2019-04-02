@@ -90,44 +90,7 @@ return [
             ],
         ],
         'assetManager' => [
-            'linkAssets' => false,
-            'bundles' => [
-                yii\web\JqueryAsset::className() => [
-                    'js' => [],
-                ],
-                frontend\assets\AppAsset::className() => [
-                    'sourcePath' => '@frontend/web/static',
-                    'css' => [
-                        'a' => 'css/style.css',
-                        'b' => 'plugins/toastr/toastr.min.css',
-                    ],
-                    'js' => [
-                        'a' => 'js/jquery.min.js',
-                        'b' => 'js/index.js',
-                        'c' => 'plugins/toastr/toastr.min.js',
-                    ],
-                ],
-                frontend\assets\IndexAsset::className() => [
-                    'sourcePath' => '@frontend/web/static',
-                    'js' => [
-                        'a' => 'js/responsiveslides.min.js',
-                    ]
-                ],
-                frontend\assets\ViewAsset::className() => [
-                    'sourcePath' => '@frontend/web/static',
-                    'css' => [
-                        'a' => 'syntaxhighlighter/styles/shCoreDefault.css'
-                    ],
-                    'js' => [
-                        'a' => 'syntaxhighlighter/scripts/shCore.js',
-                        'b' => 'syntaxhighlighter/scripts/shBrushJScript.js',
-                        'c' => 'syntaxhighlighter/scripts/shBrushPython.js',
-                        'd' => 'syntaxhighlighter/scripts/shBrushPhp.js',
-                        'e' => 'syntaxhighlighter/scripts/shBrushJava.js',
-                        'f' =>'syntaxhighlighter/scripts/shBrushCss.js',
-                    ]
-                ],
-            ]
+            'linkAssets' => true,
         ]
     ],
     'params' => $params,

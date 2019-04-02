@@ -3,6 +3,7 @@ namespace frontend\widgets;
 
 use common\models\Duty;
 use Yii;
+
 class DutyView extends \yii\base\Widget
 {
 
@@ -12,55 +13,53 @@ class DutyView extends \yii\base\Widget
     public function run()
     {
         parent::run();
-            $duty = Duty::findOne(["duty_time" => date("Y-m-d")]);
-            $body="";
-            $man = explode(",",$duty->gun);
-            $leaders = Yii::$app->params['leader'];
-            $leaderIdx=0;
-            foreach($leaders as $leader) {
-                if($leader == $duty->leader){
-                    unset($leaders[$leaderIdx]);
-                }
-                $leaderIdx++;
-            }
-            $leaders = implode("、",$leaders);
-            if($duty){
-            $body = '<div class="duty">
-                <table  width="100%">
-               <thead class="dutyhead"> 
-                <tr>
-                    <td colspan="8">'.date("Y-m-d").' 值班安排</td>
-                </tr>
-                </thead>
+        $duty = Duty::findOne(["duty_time" => date("Y-m-d")]);
+        $body = "";
+        $man = explode(",", $duty->gun);
+        if ($duty) {
+            $body = '<div class="duty"><table>
+                    <h4 class="tip">'.date("Y-m-d").' 值班安排</h4>
                 <tbody>
                 <tr>
-                    <td class="dutyblod"> 总值班</td>
-                    <td>贾先华</td>
                     <td class="dutyblod">'.$duty->getAttributeLabel("leader").'</td>
                     <td>'.$duty->leader.'</td>
-                    <td class="dutyblod">其他领导</td>
-                    <td colspan = "3">'.$leaders.'</td>
                 </tr>
                 <tr>
-                    <td rowspan="2" class="dutyblod">值班大队</td>
                     <td class="dutyblod">'.$duty->getAttributeLabel("master").'</td>
+                    <td>'.$duty->master.'</td>
+                </tr>
+                <tr>
                     <td class="dutyblod">'.$duty->getAttributeLabel("second").'</td>
+                    <td>'.$duty->second.'</td>
+                </tr>
+                <tr>
                     <td class="dutyblod">'.$duty->getAttributeLabel("three").'</td>
-                    <td rowspan="2" class="dutyblod">'.$duty->getAttributeLabel("gun").'</td>
-                    <td class="dutyblod" colspan="2">机关民警</td>
+                    <td>'.$duty->three.'</td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="dutyblod">'.$duty->getAttributeLabel("gun").'</td>
+                </tr>
+                    <td class="dutyblod">机关民警</td>
                     <td class="dutyblod">主班大队民警</td>
                 </tr>
                 <tr>
-                <td>'.$duty->master.'</td>
-                <td>'.$duty->second.'</td>
-                <td>'.$duty->three.'</td>
-                <td colspan="2">'.$man[0].'</td>
+                <td>'.$man[0].'</td>
                 <td>'.$man[1].'</td>
                 </tr>
                 </tbody>
                 </table></div>';
-            }
+
+            // $body = "<div class='duty'>
+            //     <div class='tip'>
+            //     <h4>" . date("Y-m-d") . " 值班安排</h4>
+            //     </div>
+            // <p>" . $duty->getAttributeLabel('leader') . ": <span>" . $duty->leader . "</span></p>
+            // <p>" . $duty->getAttributeLabel('master') . ": <span>" . $duty->master . "</span></p>
+            // <p>" . $duty->getAttributeLabel('second') . ": <span>" . $duty->second . "</span></p>
+            // <p>" . $duty->getAttributeLabel('three') . ": <span>" . $duty->three . "</span></p>
+            // <p>" . $duty->getAttributeLabel('gun') . ": <span>" . $duty->gun . "</span></p>
+            //     </div> ";
+        }
         return $body;
     }
 }
-

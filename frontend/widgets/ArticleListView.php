@@ -25,7 +25,7 @@ class ArticleListView extends \yii\widgets\ListView
     /**
      * @var int 标题截取长度
      */
-    public $titleLength = 20;
+    public $titleLength = 28;
 
     /**
      * @var int summary截取长度
@@ -60,15 +60,12 @@ class ArticleListView extends \yii\widgets\ListView
     /**
      * @var string 模板
      */
-    public $template = " <p class='auth-span' style='float:right'>
+    public $template = " 
+                            <div class='category_adds'>
                                 <span class='muted'><i class='fa fa-clock-o'></i> {pub_date}</span>
                                 <span class='muted'><i class='fa fa-eye'></i> {scan_count}℃</span>
-                                <span class='muted'><i class='fa fa-comments-o'></i> <a target='_blank' href='{comment_url}'>{comment_count}评论</a></span>
-                            </p>
-                        <header>
-                            <h2><a target='_blank' href='{article_url}' title='{title}'>{title}</a></h2>
-                        </header>
-                        <span class='note'> {summary}</span>";
+                            </div>
+                            <h2><a target='_blank' href='{article_url}' title='{title}'>{title}</a></h2>";
 
     /**
      * @inheritdoc
@@ -92,26 +89,19 @@ class ArticleListView extends \yii\widgets\ListView
                 $categoryAlias = $model->category ? $model->category->alias : yii::t('app', 'uncategoried');
                 $categoryUrl = Url::to(['article/index', 'cat' => $categoryAlias]);
                 $articleUrl = Url::to(['article/view', 'id' => $model->id]);
-                $summary = StringHelper::truncate($model->summary, $this->summaryLength);
                 $title = StringHelper::truncate($model->title, $this->titleLength);
                 return str_replace([
                     '{article_url}',
                     // '{img_url}',
                     '{title}',
-                    '{summary}',
                     '{pub_date}',
                     '{scan_count}',
-                    '{comment_count}',
-                    '{comment_url}'
                 ], [
                     $articleUrl,
                     // $imgUrl,
                     $title,
-                    $summary,
-                    date('Y-m-d', $model->created_at),
-                    $model->scan_count * 100,
-                    $model->comment_count,
-                    $articleUrl . "#comments"
+                    date('m-d', $model->created_at),
+                    $model->scan_count,
                 ], $this->template);
             };
         }

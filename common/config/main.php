@@ -35,17 +35,17 @@ $config = [
             'class' => yii\rbac\DbManager::className(),
         ],
         'assetManager' => [
-            'linkAssets' => false,
+            'linkAssets' => true,
             'bundles' => [
                 yii\widgets\ActiveFormAsset::className() => [
                     'js' => [
                         'a' => 'yii.activeForm.js'
                     ],
                 ],
-                yii\bootstrap\BootstrapAsset::className() => [
-                    'css' => [],
-                    'sourcePath' => null,
-                ],
+                // yii\bootstrap\BootstrapAsset::className() => [
+                //     'css' => [],
+                //     'sourcePath' => null,
+                // ],
                 yii\captcha\CaptchaAsset::className() => [
                     'js' => [
                         'a' => 'yii.captcha.js'
@@ -66,11 +66,11 @@ $config = [
                         'a' => 'jquery.pjax.js'
                     ],
                 ],
-                yii\web\YiiAsset::className() => [
-                    'js' => [
-                        'a' => 'yii.js'
-                    ],
-                ],
+                // yii\web\YiiAsset::className() => [
+                //     'js' => [
+                //         'a' => 'yii.js'
+                //     ],
+                // ],
                 yii\validators\ValidationAsset::className() => [
                     'js' => [
                         'a' => 'yii.validation.js'

@@ -11,15 +11,18 @@ namespace frontend\assets;
 class AppAsset extends \yii\web\AssetBundle
 {
 
+    public $sourcePath = '@frontend/web/static';
+
     public $css = [
-        'static/css/style.css',
-        'static/plugins/toastr/toastr.min.css',
+        'css/style.css',
     ];
 
-    public $js = [
-        'static/js/jquery.min.js',
-        'static/js/index.js',
-        'static/plugins/toastr/toastr.min.js',
-    ];
+    // public $js = [
+    // ];
 
+    public $depends = [
+        'yii\web\YiiAsset',
+        'yii\bootstrap\BootstrapAsset',
+        'yii\bootstrap\BootstrapPluginAsset',
+    ];
 }
