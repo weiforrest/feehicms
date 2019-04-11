@@ -24,12 +24,15 @@ use yii\helpers\FileHelper;
  * @property string $alias
  * @property integer $sort
  * @property string $remark
+ * @property string $is_display
  * @property string $created_at
  * @property string $updated_at
  */
 class Category extends \yii\db\ActiveRecord
 {
 
+    const DISPLAY_YES = 1;
+    const DISPLAY_NO = 0;
     /**
      * @inheritdoc
      */
@@ -54,6 +57,7 @@ class Category extends \yii\db\ActiveRecord
             [['sort', 'parent_id', 'created_at', 'updated_at'], 'integer'],
             [['sort'], 'compare', 'compareValue' => 0, 'operator' => '>='],
             [['parent_id'], 'default', 'value' => 0],
+            [['is_display'], 'integer'],
             [['name', 'alias', 'remark'], 'string', 'max' => 255],
             [['alias'],  'match', 'pattern' => '/^[a-zA-Z0-9_]+$/', 'message' => Yii::t('app', 'Only includes alphabet,_,and number')],
             [['name', 'alias'], 'required'],
@@ -72,6 +76,7 @@ class Category extends \yii\db\ActiveRecord
             'alias' => Yii::t('app', 'Alias'),
             'sort' => Yii::t('app', 'Sort'),
             'created_at' => Yii::t('app', 'Created At'),
+            'is_display' => Yii::t('app', 'Is Display'),
             'updated_at' => Yii::t('app', 'Updated At'),
             'remark' => Yii::t('app', 'Remark'),
         ];
@@ -247,6 +252,14 @@ class Category extends \yii\db\ActiveRecord
     public function getParent()
     {
         return $this->hasOne(self::className(), ['id' => 'parent_id']);
+    }
+
+    public static function getDisplay()
+    {
+        return [
+            self::DISPLAY_YES => Yii::t('app', 'Normal'),
+            self::DISPLAY_NO => Yii::t('app', 'Disabled'),
+        ];
     }
 
 }

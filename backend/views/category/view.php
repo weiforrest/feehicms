@@ -6,6 +6,7 @@
  * Created at: 2018-02-24 22:14
  */
 
+use common\libs\Constants;
 use yii\widgets\DetailView;
 
 /** @var $model common\models\Category */
@@ -26,6 +27,12 @@ use yii\widgets\DetailView;
         'alias',
         'sort',
         'remark',
+        [
+            'attribute' => 'is_display',
+            'value' => function($model){
+                return Constants::getYesNoItems($model->is_display);
+            }
+        ],
         'created_at:datetime',
         'updated_at:datetime',
     ],

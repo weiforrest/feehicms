@@ -20,6 +20,7 @@ use common\widgets\JsBlock;
 use frontend\assets\IndexAsset;
 use yii\data\ArrayDataProvider;
 use common\models\Category;
+use yii\helpers\ArrayHelper;
 use frontend\widgets\DutyView;
 use yii\helpers\Url;
 
@@ -36,6 +37,7 @@ $this->title = Yii::$app->feehi->website_title;
 
         <?php 
             $categorys = Category::find()
+                ->where(['is_display'=> Category::DISPLAY_YES])
                 ->orderBy("sort asc,parent_id asc")
                 ->asArray()
                 ->all();
@@ -72,7 +74,15 @@ $this->title = Yii::$app->feehi->website_title;
             </div>
             <?php
             foreach($categorys as $category) {
-            $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED, 'cid' => $category["id"]];
+            $descendants = Category::getDescendants($category['id']);
+            $cids= [];
+            if( empty($descendants) ) {
+                $cids = $category['id'];
+            }else{
+                $cids = ArrayHelper::getColumn($descendants, 'id');
+                $cids[] = $category['id'];
+            }
+            $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED, 'cid' => $cids];
             $articles = Article::find()->limit(9)->with('category')->where($where)->orderBy("created_at desc")->all();
                 ?>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">

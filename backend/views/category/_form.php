@@ -14,6 +14,7 @@
 use backend\widgets\ActiveForm;
 use common\helpers\FamilyTree;
 use common\models\Category;
+use common\libs\Constants;
 use yii\helpers\ArrayHelper;
 
 $this->title = "Category";
@@ -51,6 +52,8 @@ if ($parent_id != '') {
                 <?= $form->field($model, 'sort')->textInput(['maxlength' => 512]) ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'remark')->textInput(['maxlength' => 64]) ?>
+                <div class="hr-line-dashed"></div>
+                <?= $form->field($model, 'is_display')->radioList(Constants::getYesNoItems()) ?>
                 <?= $form->defaultButtons() ?>
                 <?php ActiveForm::end(); ?>
             </div>

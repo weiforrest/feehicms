@@ -15,10 +15,13 @@ use backend\grid\DateColumn;
 use backend\grid\GridView;
 use backend\grid\SortColumn;
 use backend\widgets\Bar;
+use common\libs\Constants;
 use yii\helpers\Url;
 use yii\helpers\Html;
 use backend\grid\CheckboxColumn;
 use backend\grid\ActionColumn;
+use backend\grid\StatusColumn;
+use common\models\Category;
 
 $this->title = "Category";
 $this->params['breadcrumbs'][] = Yii::t('app', 'Category');
@@ -53,6 +56,13 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Category');
                         [
                             'class' => SortColumn::className(),
                             'label' => Yii::t('app', 'Sort')
+                        ],
+                        [
+                            'class' => StatusColumn::className(),
+                            'attribute' => 'is_display',
+                            'label' => Yii::t('app', 'Is Display'),
+                            'filter' => Category::getDisplay(),
+                            'formName' => 'Category[is_display]',
                         ],
                         [
                             'class' => DateColumn::className(),
