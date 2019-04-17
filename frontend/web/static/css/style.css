@@ -2523,7 +2523,6 @@ body {
     color: #555;
     background-color: #f6f6f6;
     overflow-x: hidden;
-    default !important;
 }
 
 iframe {
@@ -3703,9 +3702,6 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
     perspective: 400px
 }
 
-/*.sub-menu li{opacity:0;-webkit-transform:rotateY(90deg);-moz-transform:rotateY(90deg);-ms-transform:rotateY(90deg);-o-transform:rotateY(90deg);ransform:rotateY(90deg);-webkit-transition:opacity .4s,-webkit-transform .5s;-moz-transition:opacity .4s,-moz-transform .5s;-ms-transition:opacity .4s,-ms-transform .5s;-o-transition:opacity .4s,-o-transform .5s;transition:opacity .4s,transform .5s*/
-
-}
 
 .nav>li:hover .sub-menu, .nav>li:focus .sub-menu {
     max-height: 1000px;
@@ -6452,7 +6448,7 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     display: none
 }
 
-.tui . {
+.tui  {
     display: none
 }
 
@@ -6861,7 +6857,6 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
-    -webkit-box-shadow: inset 0 -1px 0 #3333sf
 }
 
 .sinaweibo {
