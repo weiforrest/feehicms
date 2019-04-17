@@ -4003,7 +4003,8 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
 
 .pagination {
     padding: 20px 0 15px 0;
-    text-align: center
+    text-align: center;
+    display:block;
 }
 
 .pagination ul {
@@ -4026,12 +4027,11 @@ button.btn.btn-mini, input[type="submit"].btn.btn-mini {
     border-radius: 2px;
     line-height: 20px;
     text-decoration: none;
-    background-color: #ddd;
     color: #666
 }
 
 .pagination ul>.active>a, .pagination ul>.active>span {
-    background-color: #09a8c5;
+    background-color: #0063a4;
     color: #fff
 }
 
@@ -7969,7 +7969,8 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     color:#eef8ff;
     line-height: 40px;
     font-size:18px;
-    text-align: center;
+    /* text-align: center; */
+    padding-left: 3%;
 }
 .picView{
     display: block;
@@ -7985,6 +7986,8 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     height: 260px;
     color: #fff;
     width: 323px;
+    text-decoration: none;
+    
 }
 .picView img{
     width:100%;

@@ -78,10 +78,6 @@ $this->params['breadcrumbs'][] =  Yii::t('app', 'Banner') . ' (' . $bannerType->
                             }
                         ],
                         [
-                            'attribute' => 'link',
-                            'label' => Yii::t('app', 'Jump Link'),
-                        ],
-                        [
                             'attribute' => 'desc',
                             'label' => Yii::t('app', 'Description'),
                         ],

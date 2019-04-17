@@ -2,19 +2,19 @@
 namespace frontend\widgets;
 
 use common\models\Options;
+use yii\helpers\Url;
 use common\widgets\JsBlock;
 
 class PicView extends \yii\base\Widget
 {
     public $name;
-    public $template = "
-                        <div class=\"picWrap\">
-                        <h4 class=\"tip\">{picDesc}</h4>
+    public $template = "<div class=\"picWrap\">
+                        <h4 class=\"tip\">{picDesc}<a class=\"pull-right\" href=\"{href}\">更多</a></h4>
                         <div class=\"picView\" id=\"picView\">
                             <span id=\"PicDemo1\">{lis}</span><span id=\"PicDemo2\"></span>
                         </div>";
 
-    public $liTemplate = "<a target='{target}' href=\"{link_url}\"><img src=\"{img_url}\" alt=\"{desc}\"><div>{desc}</div></a>";
+    public $liTemplate = "<a><img src=\"{img_url}\" alt=\"{desc}\"><div>{desc}</div></a>";
 
 
     /**
@@ -23,11 +23,10 @@ class PicView extends \yii\base\Widget
     public function run()
     {
         parent::run();
-        // return var_dump(Options::findOne(['name'=>$this->name]));
         $banners = Options::getBannersByType($this->name);
         $lis = '';
         foreach ($banners as $banner) {
-            $lis .= str_replace(['{link_url}', '{img_url}', '{target}','{desc}'], [$banner['link'], $banner['img'], $banner['target'], $banner['desc']], $this->liTemplate);
+            $lis .= str_replace(['{img_url}', '{target}','{desc}'], [$banner['img'], $banner['target'], $banner['desc']], $this->liTemplate);
         }
             JsBlock::begin();
             echo '<script>
@@ -55,6 +54,6 @@ class PicView extends \yii\base\Widget
                 });
             </script>';
             JsBlock::end();
-        return str_replace(['{lis}','{picDesc}'], [$lis,Options::findOne(['name' => $this->name])->tips], $this->template);
+            return str_replace(['{lis}','{picDesc}','{href}'], [$lis,Options::findOne(['name' => $this->name])->tips,Url::toRoute(['image/view', 'name'=>$this->name])],$this->template);
     }
 }

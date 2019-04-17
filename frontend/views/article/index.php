@@ -46,7 +46,7 @@ $this->title = Yii::$app->feehi->website_title;
             $isright = true;
             //要闻
             $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED, 'flag_special_recommend' => 1];
-            $articles = Article::find()->limit(9)->with('category')->where($where)->orderBy("created_at desc")->all();
+            $articles = Article::find()->limit(10)->with('category')->where($where)->orderBy("created_at desc")->all();
             // $articles = Article::find()->where(['flag_special_recommend' => 1])->limit(8)->orderBy("sort asc")->all();
             ?>
             <div class="col-xs-12 col-sm-6 col-md-6 col-lg-5">
@@ -86,7 +86,7 @@ $this->title = Yii::$app->feehi->website_title;
                     $cids[] = $category['id'];
                 }
                 $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED, 'cid' => $cids];
-                $articles = Article::find()->limit(9)->with('category')->where($where)->orderBy("created_at desc")->all();
+                $articles = Article::find()->limit(10)->with('category')->where($where)->orderBy("created_at desc")->all();
                 ?>
                 <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
                     <div class="category" >

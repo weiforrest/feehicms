@@ -24,11 +24,8 @@ use common\libs\Constants;
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'img')->imgInput() ?>
                 <div class="hr-line-dashed"></div>
-                <?= $form->field($model, 'link')->textInput() ?>
-                <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'desc')->textInput() ?>
                 <div class="hr-line-dashed"></div>
-                <?= $form->field($model, 'target')->radioList(Constants::getTargetOpenMethod()) ?>
                 <div class="hr-line-dashed"></div>
                 <?= $form->field($model, 'sort')->textInput() ?>
                 <div class="hr-line-dashed"></div>
