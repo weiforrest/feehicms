@@ -60,7 +60,7 @@ return [
                 'image/<name:\w+>'=>'image/view',
                 'page/<name:\w+>' => 'page/view',
                 'comment' => 'article/comment',
-                'search' => 'search/index',
+                'search/<page:\d+>' => 'search/index',
                 'tag/<tag:\w+>' => 'search/tag',
                 'rss' => 'article/rss',
                 'list/<page:\d+>' => 'site/index',
