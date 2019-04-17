@@ -16,12 +16,14 @@ use frontend\models\Article;
 use frontend\widgets\ArticleListView;
 use frontend\widgets\ScrollPicView;
 use frontend\widgets\NoticeView;
-use common\widgets\JsBlock;
 use frontend\assets\IndexAsset;
 use yii\data\ArrayDataProvider;
 use common\models\Category;
 use yii\helpers\ArrayHelper;
 use frontend\widgets\DutyView;
+use frontend\widgets\AdView;
+use frontend\widgets\SideAdView;
+use frontend\widgets\PicView;
 use yii\helpers\Url;
 
 // IndexAsset::register($this);
@@ -73,42 +75,60 @@ $this->title = Yii::$app->feehi->website_title;
                 <?= NoticeView::widget();?>
             </div>
             <?php
+            $index = 0;
             foreach($categorys as $category) {
-            $descendants = Category::getDescendants($category['id']);
-            $cids= [];
-            if( empty($descendants) ) {
-                $cids = $category['id'];
-            }else{
-                $cids = ArrayHelper::getColumn($descendants, 'id');
-                $cids[] = $category['id'];
-            }
-            $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED, 'cid' => $cids];
-            $articles = Article::find()->limit(9)->with('category')->where($where)->orderBy("created_at desc")->all();
+                $descendants = Category::getDescendants($category['id']);
+                $cids= [];
+                if( empty($descendants) ) {
+                    $cids = $category['id'];
+                }else{
+                    $cids = ArrayHelper::getColumn($descendants, 'id');
+                    $cids[] = $category['id'];
+                }
+                $where = ['type' => Article::ARTICLE, 'status' => Article::ARTICLE_PUBLISHED, 'cid' => $cids];
+                $articles = Article::find()->limit(9)->with('category')->where($where)->orderBy("created_at desc")->all();
                 ?>
-            <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
-                <div class="category">
-                    <h4 class="tip"><?= $category["name"]?> <a class="pull-right" href="<?= Url::to(['article/index', 'cat'=> $category['alias']])?>">更多</a></h4>
-                        <?= ArticleListView::widget([
-                        'dataProvider' => new ArrayDataProvider([
-                            'allModels' => $articles,
-                        ]),
-                        'layout' => " <ul>
-                                            {items}
-                                        </ul>
-                                    ",
-                        'template' => "<a href='{article_url}'><p>{title}</p></a>
-                                            <span class='pull-right'>{pub_date}</span>",
-                        'itemOptions' => ['tag'=>'li'],
-                        'thumbWidth' => 168,
-                        'thumbHeight' => 112,
-                    ]) ?>
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="category" >
+                        <h4 class="tip"><?= $category["name"]?> <a class="pull-right" href="<?= Url::to(['article/index', 'cat'=> $category['alias']])?>">更多</a></h4>
+                            <?= ArticleListView::widget([
+                            'dataProvider' => new ArrayDataProvider([
+                                'allModels' => $articles,
+                            ]),
+                            'layout' => " <ul>
+                                                {items}
+                                            </ul>
+                                        ",
+                            'template' => "<a href='{article_url}'><p>{title}</p></a>
+                                                <span class='pull-right'>{pub_date}</span>",
+                            'itemOptions' => ['tag'=>'li'],
+                            'thumbWidth' => 168,
+                            'thumbHeight' => 112,
+                        ]) ?>
+                    </div>
+                </div>
+            <?php
+                if($index == 1) {
+                ?>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" style="margin-bottom:15px">
+                    <?=AdView::widget();?>
+                </div>
+            <?php
+                }
+            $index++;
+            }
+            
+            ?>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <?= SideAdView::widget();?>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <?=PicView::widget(['name' => 'index']);?>
                 </div>
             </div>
-            <?php
-            }
 
-            ?>
-                <?php } else {?>
+                <?php 
+        } else {?>
         <div class="category_list">
         <h1><?=$type?></h1>
         <?= ArticleListView::widget([

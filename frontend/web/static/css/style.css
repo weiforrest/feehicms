@@ -75,14 +75,6 @@
     border-radius: .1em
 }
 
-.pull-right {
-    float: right
-}
-
-.pull-left {
-    float: left
-}
-
 .fa.pull-left {
     margin-right: .3em
 }
@@ -2634,8 +2626,7 @@ iframe {
     max-width: 1000px;
     padding: 16px 20px 14px;
     margin: 0 auto;
-    color: #aaa;
-    *zoom: 1
+    color: #fff;
 }
 
 .footer-inner:before, .footer-inner:after {
@@ -7859,7 +7850,6 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 /* 分类模块 */
 .category {
     display: block;
-    /* width: 49%; */
     height: 300px;
     border: 1px solid #eaeaea;
     border-radius: 4px;
@@ -7912,7 +7902,7 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 }
 .tip a{
     color:#fff;
-    padding-right:3%;
+    margin-right:3%;
 }
 
 .content >div {
@@ -7957,4 +7947,64 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 .content {
     width: 940px;
     margin: auto;
+}
+.sideAdClose{
+    width:100px;
+    height: 24px;
+    text-align: center;
+    color:black;
+    line-height: 24px;
+    font-size:13px;
+    display: block;
+    cursor: pointer;
+}
+
+/* 图片展示 */
+.picWrap{
+    height: 290px;
+    display: block;
+    border: 1px solid #eaeaea;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    background: #fff;
+}
+.picWrap h4 {
+    margin: 0;
+    background: #0063a4;
+    color:#eef8ff;
+    line-height: 40px;
+    font-size:18px;
+    text-align: center;
+}
+.picView{
+    display: block;
+    width: 100%;
+    height: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.picView a {
+    margin-right: 1px;
+    overflow: hidden;
+    display: inline-block!important;
+    height: 260px;
+    color: #fff;
+    width: 323px;
+}
+.picView img{
+    width:100%;
+    height: 210px;
+}
+
+.picView a div {
+    padding: 10px;
+    word-break: break-all!important;
+    word-wrap: break-word!important;
+    white-space: pre-wrap!important;
+    text-align: center !important;
+    background: #0063a4;
+    filter: alpha(opacity=90);
+    -moz-opacity: 0.9;
+    -khtml-opacity: 0.9;
+    opacity: 0.9;
 }
