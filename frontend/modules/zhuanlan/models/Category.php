@@ -6,7 +6,7 @@
  * Created at: 2017-03-15 21:16
  */
 
-namespace common\models;
+namespace frontend\modules\zhuanlan\models;
 
 use Yii;
 use common\helpers\FamilyTree;
@@ -38,7 +38,7 @@ class Category extends \yii\db\ActiveRecord
      */
     public static function tableName()
     {
-        return '{{%category}}';
+        return '{{%zhuanlan}}';
     }
 
     public function behaviors()
@@ -152,7 +152,7 @@ class Category extends \yii\db\ActiveRecord
                 $sign = ' │';
             }
             if( $menuCategoryChosen ){
-                $url = '{"0":"/article/index","cat":"' . $category['alias'] . '"}';
+                $url = '{"0":"article/index","cat":"' . $category['alias'] . '"}';
             }else{
                 $url = '/'.$category['alias'];
             }

@@ -61,7 +61,7 @@ class ArticleListView extends \yii\widgets\ListView
      * @var string 模板
      */
     public $template = " 
-                            <div class='category_adds'>
+                            <div class='pull-right'>
                                 <span class='muted'><i class='fa fa-clock-o'></i> {pub_date}</span>
                                 <span class='muted'><i class='fa fa-eye'></i> {scan_count}℃</span>
                             </div>

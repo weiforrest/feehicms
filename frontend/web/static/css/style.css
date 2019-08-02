@@ -7845,7 +7845,7 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 /* 分类模块 */
 .category {
     display: block;
-    height: 300px;
+    min-height: 300px;
     border: 1px solid #eaeaea;
     border-radius: 4px;
     margin-bottom: 15px;
@@ -7907,7 +7907,6 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 /* 分类页面 */
 .category_list {
     display: block;
-    width: 940px;
     margin: auto;
     border: 1px solid #eaeaea;
     border-radius: 4px;
@@ -7930,9 +7929,9 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
 .category_list h2 {
     display: inline-block;
     font-size: 20px;
-    padding:10px 20px 0px 50px;
+    /* padding:10px 20px 0px 50px; */
     margin: 0;
-    width:80%;
+    /* width:80%; */
     overflow: hidden;
     font-weight: normal;
     line-height: 20px;
@@ -8005,4 +8004,21 @@ a.label-inverse:hover .label-arrow, a.badge-inverse:hover .label-arrow {
     -moz-opacity: 0.9;
     -khtml-opacity: 0.9;
     opacity: 0.9;
+}
+.excerpt {
+    padding: 10px 20px 0px 50px;
+}
+.current-menu-item {
+    background-color: #0063a4;
+    color: #fff;
+}
+.current-menu-item a:hover{
+    color:#fff;
+}
+
+.zhuanlanbar a:visited{
+    color: #0063a4;
+}
+.current-menu-item a:visited{
+    color:#fff;
 }

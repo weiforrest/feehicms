@@ -99,6 +99,7 @@ return [
     /*Article*/
     'Category Id' => '分类ID',
     'Category' => '分类',
+    'Zhuanlan' => '专栏',
     'Title' => '标题',
     'Sub Title' => '副标题',
     'Summary' => '概述',

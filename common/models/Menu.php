@@ -252,7 +252,9 @@ class Menu extends \yii\db\ActiveRecord
                     if( $temp === null ){
                         Yii::error("app", "Menu id ({$this->id}) url is incorrect json format");
                     }
-                    $url = Url::to($temp);
+                    // $url = Url::to($temp);
+                    // $url = print_r($temp);
+                    $url = Url::to([$temp[0], 'cat' => $temp['cat']]);
                 }else{
                     $url = Url::to([$this->url]);
                 }

@@ -12,6 +12,11 @@ return [
     'defaultRoute' => 'article/index',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'modules' => [
+        'zhuanlan' => [
+            'class' => 'frontend\modules\zhuanlan\Module',
+        ],
+    ],
     'components' => [
         'request' =>
         [
@@ -52,13 +57,15 @@ return [
                 //'detail/<id:\d+>' => 'site/detail?id=$id',
                 //'post/22'=>'site/detail',
                 //'<controller:detail>/<id:\d+>' => '<controller>/index',
-                'cate/<cat:\w+>/<page:\d+>' =>'article/index',
+                'cate/<cat:\w+>' =>'/article/index',
                 '<page:\d+>' => 'article/index',
                 'login' => 'site/login',
                 'signup' => 'site/signup',
                 'view/<id:\d+>' => 'article/view',
                 'image/<name:\w+>'=>'image/view',
                 'page/<name:\w+>' => 'page/view',
+                'zhuanlan/<cat:\w+>' =>'zhuanlan/article/index',
+                'zhuanlan/view/<id:\d+>' => 'zhuanlan/article/view',
                 'comment' => 'article/comment',
                 'search/<page:\d+>' => 'search/index',
                 'tag/<tag:\w+>' => 'search/tag',

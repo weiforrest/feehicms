@@ -13,7 +13,11 @@ return [
     'language' => 'zh-CN',//默认语言
     'timeZone' => 'Asia/Shanghai',//默认时区
     'bootstrap' => ['log'],
-    'modules' => [],
+    'modules' => [
+        'zhuanlan' => [
+            'class' => 'backend\modules\zhuanlan\Module',
+        ],
+    ],
     'components' => [
         'user' => [
             'identityClass' => backend\models\User::className(),
