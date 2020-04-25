@@ -25,7 +25,7 @@ class ArticleListView extends \yii\widgets\ListView
     /**
      * @var int 标题截取长度
      */
-    public $titleLength = 28;
+    public $titleLength = 36;
 
     /**
      * @var int summary截取长度

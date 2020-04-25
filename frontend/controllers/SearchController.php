@@ -32,6 +32,9 @@ class SearchController extends Controller
         $query->andFilterWhere(['like', 'title', $keyword]);
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'pagination' => [
+                'pageSize' => 100,
+            ],
             'sort' => [
                 'defaultOrder' => [
                     'sort' => SORT_ASC,
