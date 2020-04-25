@@ -25,25 +25,13 @@ use yii\behaviors\TimestampBehavior;
  * @property string $sub_title
  * @property string $summary
  * @property string $thumb
- * @property string $seo_title
- * @property string $seo_keywords
- * @property string $seo_description
  * @property integer $status
  * @property integer $sort
  * @property integer $author_id
  * @property string $author_name
  * @property integer $scan_count
- * @property integer $comment_count
- * @property integer $can_comment
- * @property integer $visibility
- * @property string $password
- * @property integer $flag_headline
- * @property integer $flag_recommend
  * @property integer $flag_slide_show
  * @property integer $flag_special_recommend
- * @property integer $flag_roll
- * @property integer $flag_bold
- * @property integer $flag_picture
  * @property integer $created_at
  * @property integer $updated_at
  *
@@ -88,10 +76,9 @@ class Article extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cid', 'type', 'status', 'sort', 'author_id', 'can_comment', 'visibility'], 'integer'],
+            [['cid', 'type', 'status', 'sort', 'author_id' ], 'integer'],
             [['cid', 'sort', 'author_id'], 'compare', 'compareValue' => 0, 'operator' => '>='],
-            [['title', 'status'], 'required'],
-            [['can_comment', 'visibility'], 'default', 'value' => Constants::YesNo_Yes],
+            [['title', 'status','cid'], 'required'],
             [['thumb'], 'file', 'skipOnEmpty' => true, 'extensions' => 'png, jpg, jpeg, gif, webp'],
             [['content'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
@@ -101,26 +88,16 @@ class Article extends \yii\db\ActiveRecord
                     'sub_title',
                     'summary',
                     'thumb',
-                    'seo_title',
-                    'seo_keywords',
-                    'seo_description',
                     'author_name',
-                    'tag'
                 ],
                 'string',
                 'max' => 255
             ],
             [
                 [
-                    'flag_headline',
-                    'flag_recommend',
                     'flag_slide_show',
                     'flag_special_recommend',
-                    'flag_roll',
-                    'flag_bold',
-                    'flag_picture',
                     'status',
-                    'can_comment'
                 ],
                 'in',
                 'range' => [0, 1]
@@ -128,7 +105,6 @@ class Article extends \yii\db\ActiveRecord
             [['visibility'], 'in', 'range' => array_keys(Constants::getArticleVisibility())],
             [['type'], 'default', 'value'=>self::ARTICLE, 'on'=>'article'],
             [['type'], 'default', 'value'=>self::SINGLE_PAGE, 'on'=>'page'],
-            [['password'], 'string', 'max'=>20],
             ['cid', 'default', 'value'=>0]
         ];
     }
@@ -147,9 +123,6 @@ class Article extends \yii\db\ActiveRecord
                 'summary',
                 'content',
                 'thumb',
-                'seo_title',
-                'seo_keywords',
-                'seo_description',
                 'status',
                 'sort',
                 'author_id',
@@ -157,32 +130,16 @@ class Article extends \yii\db\ActiveRecord
                 'created_at',
                 'updated_at',
                 'scan_count',
-                'comment_count',
-                'can_comment',
-                'visibility',
-                'tag',
-                'flag_headline',
-                'flag_recommend',
                 'flag_slide_show',
                 'flag_special_recommend',
-                'flag_roll',
-                'flag_bold',
-                'flag_picture',
-                'password'
             ],
             'page' => [
                 'type',
                 'title',
                 'sub_title',
                 'summary',
-                'seo_title',
                 'content',
-                'seo_keywords',
-                'seo_description',
                 'status',
-                'can_comment',
-                'visibility',
-                'tag',
                 'sort'
             ],
         ];
@@ -202,28 +159,15 @@ class Article extends \yii\db\ActiveRecord
             'summary' => Yii::t('app', 'Summary'),
             'content' => Yii::t('app', 'Content'),
             'thumb' => Yii::t('app', 'Thumb'),
-            'seo_title' => Yii::t('app', 'Seo Title'),
-            'seo_keywords' => Yii::t('app', 'Seo Keyword'),
-            'seo_description' => Yii::t('app', 'Seo Description'),
             'status' => Yii::t('app', 'Status'),
-            'can_comment' => Yii::t('app', 'Can Comment'),
-            'visibility' => Yii::t('app', 'Visibility'),
             'sort' => Yii::t('app', 'Sort'),
-            'tag' => Yii::t('app', 'Tag'),
             'author_id' => Yii::t('app', 'Author Id'),
             'author_name' => Yii::t('app', 'Author'),
             'created_at' => Yii::t('app', 'Created At'),
             'updated_at' => Yii::t('app', 'Updated At'),
-            'flag_headline' => Yii::t('app', 'Is Headline'),
-            'flag_recommend' => Yii::t('app', 'Is Recommend'),
             'flag_special_recommend' => Yii::t('app', 'Is Special Recommend'),
             'flag_slide_show' => Yii::t('app', 'Is Slide Show'),
-            'flag_roll' => Yii::t('app', 'Is Roll'),
-            'flag_bold' => Yii::t('app', 'Is Bold'),
-            'flag_picture' => Yii::t('app', 'Is Picture'),
-            'password' => Yii::t('app', 'Password'),
             'scan_count' => Yii::t('app', 'Scan Count'),
-            'comment_count' => Yii::t('app', 'Comment Count'),
             'category' => Yii::t('app', 'Category'),
         ];
     }

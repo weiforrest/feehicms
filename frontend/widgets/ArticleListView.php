@@ -42,6 +42,11 @@ class ArticleListView extends \yii\widgets\ListView
      */
     public $thumbHeight = 150;
 
+    /**
+     * $var string 时间格式
+     */
+    public $dateformat = "Y-m-d";
+
     public $itemOptions = [
         'tag' => 'article',
         'class' => 'excerpt'
@@ -63,7 +68,6 @@ class ArticleListView extends \yii\widgets\ListView
     public $template = " 
                             <div class='pull-right'>
                                 <span class='muted'><i class='fa fa-clock-o'></i> {pub_date}</span>
-                                <span class='muted'><i class='fa fa-eye'></i> {scan_count}℃</span>
                             </div>
                             <h2><a target='_blank' href='{article_url}' title='{title}'>{title}</a></h2>";
 
@@ -100,7 +104,7 @@ class ArticleListView extends \yii\widgets\ListView
                     $articleUrl,
                     // $imgUrl,
                     $title,
-                    date('m-d', $model->created_at),
+                    date($this->dateformat, $model->created_at),
                     $model->scan_count,
                 ], $this->template);
             };

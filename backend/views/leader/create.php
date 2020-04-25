@@ -8,7 +8,7 @@ use common\models\Duty;
 /* @var $model common\models\Duty */
 
 $this->params['breadcrumbs'] = [
-    ['label' => yii::t('app', 'Duty'), 'url' => Url::to(['index'])],
+    ['label' => yii::t('app', 'Leader'), 'url' => Url::to(['index'])],
     ['label' => yii::t('app', 'Create') . yii::t('app', 'Duty')],
 ];
 /*$model=Duty::find()->limit(1)->orderBy('duty_time desc')->one();

@@ -19,7 +19,7 @@ class SideAdView extends \yii\base\Widget
                 ->all();
         $body="";
         if ($ads) {
-            $body = '<div style="position:fixed;left:20px;top:100px;width:150px;z-index:9999">';
+            $body = '<div class="sideAd">';
             foreach($ads as $ad){
             $body .= HTML::a(HTML::img($ad->ad,['alt' => $ad->desc]),$ad->link,['target' => $ad->target]);
             }

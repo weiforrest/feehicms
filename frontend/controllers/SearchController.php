@@ -13,6 +13,7 @@ use Yii;
 use frontend\models\Article;
 use yii\web\Controller;
 use yii\data\ActiveDataProvider;
+use yii\data\Pagination;
 use yii\helpers\StringHelper;
 
 class SearchController extends Controller
@@ -39,30 +40,10 @@ class SearchController extends Controller
             ]
         ]);
         $keyword = StringHelper::truncate($keyword, 15);
-        return $this->render('/article/index', [
+        return $this->render('/article/category', [
             'dataProvider' => $dataProvider,
-            'type' => Yii::t('frontend', 'Search keyword {keyword} results', ['keyword'=>$keyword]),
+            'name' => Yii::t('frontend', 'Search keyword {keyword} results', ['keyword'=>$keyword]),
         ]);
     }
 
-    public function actionTag($tag='')
-    {
-        $metaTagModel = new ArticleMetaTag();
-        $aids = $metaTagModel->getAidsByTag($tag);
-        $where = ['type' => Article::ARTICLE];
-        $query = Article::find()->select([])->where($where)->where(['in', 'id', $aids]);
-        $dataProvider = new ActiveDataProvider([
-            'query' => $query,
-            'sort' => [
-                'defaultOrder' => [
-                    'sort' => SORT_ASC,
-                    'id' => SORT_DESC,
-                ]
-            ]
-        ]);
-        return $this->render('/article/index', [
-            'dataProvider' => $dataProvider,
-            'type' => Yii::t('frontend', 'Tag {tag} related articles', ['tag'=>$tag]),
-        ]);
-    }
 }

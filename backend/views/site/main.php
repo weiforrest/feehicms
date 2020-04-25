@@ -20,7 +20,7 @@ $this->registerCss("
 ")
 ?>
 <div class="row">
-    <div class="col-sm-3">
+    <div class="col-sm-6">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <span class="label label-success pull-right"><?= Yii::t('app', 'Month') ?></span>
@@ -33,33 +33,7 @@ $this->registerCss("
             </div>
         </div>
     </div>
-    <div class="col-sm-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-info pull-right"><?= Yii::t('app', 'Today') ?></span>
-                <h5><?= Yii::t('app', 'Comments') ?></h5>
-            </div>
-            <div class="ibox-content openContab" href="<?=Url::to(['comment/index'])?>" title="<?= Yii::t('app', 'Comments')?>" style="cursor: pointer">
-                <h1 class="no-margins"><?= $statics['COMMENT'][0] ?></h1>
-                <div class="stat-percent font-bold text-info"><?= $statics['COMMENT'][1] ?>% <i class="fa fa-level-up"></i></div>
-                <small><?= Yii::t('app', 'Total') ?></small>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <span class="label label-primary pull-right"><?= Yii::t('app', 'Month') ?></span>
-                <h5><?= Yii::t('app', 'Users') ?></h5>
-            </div>
-            <div class="ibox-content openContab" href="<?=Url::to(['user/index'])?>" title="<?= Yii::t('app', 'Users')?>" style="cursor: pointer">
-                <h1 class="no-margins"><?= $statics['USER'][0] ?></h1>
-                <div class="stat-percent font-bold text-navy"><?= $statics['USER'][1] ?>% <i class="fa fa-level-up"></i></div>
-                <small><?= Yii::t('app', 'Total') ?></small>
-            </div>
-        </div>
-    </div>
-    <div class="col-sm-3">
+    <div class="col-sm-6">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <span class="label label-success pull-right"><?= Yii::t('app', 'Month') ?></span>
@@ -111,6 +85,8 @@ $this->registerCss("
                 </div>
             </div>
 
+    </div>
+    <div class="col-sm-6">
         <div>
             <div class="ibox-title">
                 <h5><?= Yii::t('app', 'Status') ?></h5>
@@ -169,41 +145,6 @@ $this->registerCss("
                     </div>
                     <div class="progress progress-small">
                         <div style="width: <?= $status['DISK_SPACE']['PERCENTAGE'] ?>%;" class="progress-bar progress-bar<?=$status['DISK_SPACE']['PERCENTAGE']>80 ? '-danger' : ''?>"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-sm-6">
-        <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5><?= Yii::t('app', 'Latest Comments') ?></h5>
-                <div class="ibox-tools">
-                    <a class="openContab" title="<?=Yii::t('app', 'Comments')?>" target="_blank" href="<?=Url::to(['comment/index'])?>"><?= Yii::t('app', 'More')?></a>
-                    <a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                    <a class="close-link"><i class="fa fa-times"></i></a>
-                </div>
-            </div>
-            <div class="ibox-content">
-                <div>
-                    <div class="feed-activity-list">
-                        <?php
-                        foreach ($comments as $comment) {
-                            ?>
-                            <div class="feed-element">
-                                <a class="pull-left"><img alt="image" class="img-circle" src="https://secure.gravatar.com/avatar/<?= md5($comment->email) ?>?s=50"></a>
-                                <div class="media-body ">
-                                    <small class="pull-right"><?= Yii::$app->getFormatter()->asRelativeTime($comment->created_at) ?></small>
-                                    <strong><?= $comment->nickname ?></strong>
-                                    <br>
-                                    <small class="text-muted"><?= Yii::$app->getFormatter()->asDate($comment->created_at) ?> <?= Yii::t('app', 'at')?> <a class="openContab" data-index="0" title="<?=yii::t('app',"Articles")?>" href="<?=Url::toRoute(['article/view-layer', 'id'=>$comment->article->id]) ?>"><?= $comment->article->title ?></a></small>
-                                    <div data-index="0" class="openContab well" href="<?=Url::toRoute(['comment/index']) ?>" title="<?= Yii::t('app', 'Comments')?>" style="cursor: pointer">
-                                        <?= $comment->content ?>
-                                    </div>
-                                </div>
-                            </div>
-                        <?php } ?>
                     </div>
                 </div>
             </div>

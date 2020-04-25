@@ -6,8 +6,8 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\Duty */
 
-$this->title = $model->duty_time;
-$this->params['breadcrumbs'][] = ['label' => 'Duties', 'url' => ['index']];
+$this->title = $model->name;
+$this->params['breadcrumbs'][] = ['label' => 'Leader', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="duty-view">
@@ -17,8 +17,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'duty_time',
-            'gun',
+            // 'id',
+            'name',
+            'tel',
+            'sort'
         ],
     ]) ?>
 

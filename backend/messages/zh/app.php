@@ -353,4 +353,9 @@ return [
     'Ad' => '广告',
     'Ad Explain' => '广告描述',
     /*ad*/
+
+    /*duty*/
+    'Duty' =>'值班管理',
+    'Leader' => '值班领导',
+    /*duty*/
 ];

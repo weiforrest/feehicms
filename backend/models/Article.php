@@ -26,18 +26,6 @@ class Article extends \common\models\Article
     public $content = null;
 
 
-    /**
-     * @inheritdoc
-     */
-    public function afterValidate()
-    {
-        if($this->visibility == Constants::ARTICLE_VISIBILITY_SECRET){//加密文章需要设置密码
-            if( empty( $this->password ) ){
-                $this->addError('password', Yii::t('app', "Secret article must set a password"));
-            }
-        }
-        parent::afterValidate();
-    }
 
     /**
      * @inheritdoc

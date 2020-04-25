@@ -16,109 +16,73 @@
  * @var $commentList array
  */
 
-use frontend\widgets\ArticleListView;
-use yii\data\ArrayDataProvider;
-use yii\helpers\Url;
-use frontend\assets\ViewAsset;
-use common\widgets\JsBlock;
-use yii\helpers\Html;
-use yii\widgets\ActiveForm;
 
 $this->title = $model->title;
 
-$this->registerMetaTag(['name' => 'keywords', 'content' => $model->seo_keywords], 'keywords');
-$this->registerMetaTag(['name' => 'description', 'content' => $model->seo_description], 'description');
-$this->registerMetaTag(['name' => 'tags', 'content' => call_user_func(function()use($model) {
-    $tags = '';
-    foreach ($model->articleTags as $tag) {
-        $tags .= $tag->value . ',';
-    }
-    return rtrim($tags, ',');
-    }
-)], 'tags');
-$this->registerMetaTag(['property' => 'article:author', 'content' => $model->author_name]);
-$categoryName = $model->category ? $model->category->name : Yii::t('app', 'uncategoried');
-
-//传递分类到layout中
-Yii::$app->params['category']= $model->category->alias;
-
-ViewAsset::register($this);
 ?>
-<div class="content-wrap">
-    <div class="content">
-        <div class="breadcrumbs">
-            <a title="<?=Yii::t('frontend', 'Return Home')?>" href="<?= Yii::$app->getHomeUrl() ?>"><i class="fa fa-home"></i></a>
-            <small>&gt;</small>
-            <a href="<?= Url::to(['article/index', 'cat' => $model->category->alias]) ?>"><?= $categoryName ?></a>
-            <small>&gt;</small>
-            <span class="muted"><?= $model->title ?></span>
-        </div>
-        <header class="article-header">
-            <h1 class="article-title"><?= $model->title ?></h1>
-            <div class="meta">
-                <span class="muted"><i class="fa fa-user"></i> <?= $model->author_name ?></span>
-                <time class="muted"><i class="fa fa-clock-o"></i> <?= Yii::$app->getFormatter()->asDate($model->created_at) ?></time>
-                <span class="muted"><i class="fa fa-eye"></i> <span id="scanCount"><?= $model->scan_count * 100 ?></span>℃</span>
-                <span class="muted"><i class="fa fa-comments-o"></i>
-                    <a href="<?= Url::to([
-                        'article/view',
-                        'id' => $model->id
-                    ]) ?>#comments">
-                        <span id="commentCount"><?= $model->comment_count ?></span>
-                    <?=Yii::t('frontend', 'Comment')?></a>
-                </span>
-            </div>
-        </header>
 
-        <article class="article-content">
-            <?= $model->articleContent->content ?>
+<CENTER>
+<TABLE width="700" height="100%" align="center" bgcolor="#ffffff">
+  <TBODY>
+  <TR>
+    <TD valign="top">
+      <TABLE width="600" align="center" bordercolor="#000000" bgcolor="#ffffff" 
+      border="0" cellspacing="0" cellpadding="0">
+        <TBODY>
+        <TR>
+          <TD><!-- title -->             
+            <TABLE width="600" align="center" border="0">
+              <TBODY>
+              <TR>
+                <TD height="100"><NOBR>
+                  <DIV align="center"><FONT color="#ff0000" 
+                  size="+5"><B><?=$model->category->name?></B></FONT>                   </DIV></NOBR>   
+                                </TD></TR>
+              <TR align="center">
+                <TD align="center"><BR><B></B></TD></TR>
+              <TR>
+                <TD height="36" align="middle">
+                  <HR size="4" color="#ff0000">
+                </TD></TR>
+              <TR>
+                <TD height="1" colspan="2"><BR>
+                  <P align="center"><FONT face="黑体" 
+                  size="5"><?=$model->title?></FONT></P>
+                </TD>
+              </TR>
+              <TR>
+                <TD>
+                  <P align="center"><FONT face="楷体_GB2312,楷体" 
+                  size="3"><?=$model->sub_title?></FONT></P>
+                </TD>
+              </TR>
+                </TBODY></TABLE><!-- end title --> 
+                        <!-- ContentStart -->             
+            <TABLE width="600" align="center" border="0">
+              <TBODY>
+              <TR>
+                <TD><SPAN style="line-height: 1.7; font-size: 17px;"><BR>
+                <FONT face="仿宋_GB2312">
+                    <?= $model->articleContent->content ?>
+                </FONT> 
+                                    </SPAN>                 </TD></TR></TBODY></TABLE><!-- ContentEnd --> 
+                      </TD></TR>
+        <TR>
+          <TD style="padding-left: 2em; font-family: 仿宋_GB2312; font-size: 18px;"></TD></TR>
+        <TR>
+          <TD></TD></TR>
+        <TR>
+          <TD>
+            <TABLE width="600" align="center" border="0">
+              <TBODY>
+              <TR>
+                <TD colspan="3">
+                  <HR width="600" size="3" align="center" style="color: rgb(0, 0, 0);" 
+                  noshade="">
+                </TD></TR>
+              <TR>
+                <TD align="left"><NOBR>发布者：<?=$model->author_name?></NOBR></TD>
+                <TD align="right"><NOBR><?= Yii::$app->getFormatter()->asDate($model->created_at) ?></NOBR></TD></TR>
+              <TR>
+                <TD align="right" colspan="2"><NOBR>总共阅读 <?=$model->scan_count?> 次</NOBR></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></CENTER>
 
-            <div class="article-social">
-                <a href="javascript:;" data-action="ding" data-id="<?=$model->id?>" like-url="<?=Url::to(['article/like'])?>" id="Addlike" class="action"><i class="fa fa-heart-o"></i><?=Yii::t('frontend', 'Like')?> (<span class="count"><?= $model->getArticleLikeCount() ?></span>)</a>
-            </div>
-        </article>
-        <footer class="article-footer">
-            <div class="article-tags">
-                <i class="fa fa-tags"></i>
-                <?php foreach ($model->articleTags as $tag){ ?>
-                    <a href="<?=Url::to(['search/tag', 'tag'=>$tag->value])?>" rel="tag" data-original-title="" title=""><?=$tag->value?></a>
-                <?php } ?>
-            </div>
-        </footer>
-        <nav class="article-nav">
-            <?php
-                if ($prev !== null) {
-            ?>
-                <span class="article-nav-prev">
-                    <i class="fa fa-angle-double-left"></i><a href='<?= Url::to(['article/view', 'id' => $prev->id]) ?>' rel="prev"><?= $prev->title ?></a>
-                </span>
-            <?php } ?>
-            <?php
-                if ($next != null) {
-            ?>
-                <span class="article-nav-next">
-                    <a href="<?= Url::to(['article/view', 'id' => $next->id]) ?>" rel="next"><?= $next->title ?></a><i class="fa fa-angle-double-right"></i>
-                </span>
-            <?php } ?>
-        </nav>
-
-        </div>
-    </div>
-</div>
-<?php JsBlock::begin(); ?>
-<script type="text/javascript">
-    SyntaxHighlighter.all();
-    $(document).ready(function () {
-        $.ajax({
-            url:"<?=Url::to(['article/view-ajax'])?>",
-            data:{id:<?=$model->id?>},
-            success:function (data) {
-                $("span.count").html(data.likeCount);
-                $("span#scanCount").html(data.scanCount);
-                $("span#commentCount").html(data.commentCount);
-            }
-        });
-    })
-</script>
-<script>with(document)0[(getElementsByTagName("head")[0]||body).appendChild(createElement("script")).src="http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion="+~(-new Date()/36e5)];</script>
-<?php JsBlock::end(); ?>

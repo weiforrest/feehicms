@@ -12,11 +12,6 @@ return [
     'defaultRoute' => 'article/index',
     'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
-    'modules' => [
-        'zhuanlan' => [
-            'class' => 'frontend\modules\zhuanlan\Module',
-        ],
-    ],
     'components' => [
         'request' =>
         [
@@ -47,7 +42,7 @@ return [
             'keyPrefix' => 'frontend',       // 唯一键前缀
         ],
         'urlManager' => [
-            'enablePrettyUrl' => true,//true 美化路由(注:需要配合web服务器配置伪静态，详见http://doc.feehi.com/install.html), false 不美化路由
+            'enablePrettyUrl' => false,//true 美化路由(注:需要配合web服务器配置伪静态，详见http://doc.feehi.com/install.html), false 不美化路由
             'showScriptName' => false,//隐藏index.php
             'enableStrictParsing' => false,
             // 'suffix' => '.html',//后缀，如果设置了此项，那么浏览器地址栏就必须带上.html后缀，否则会报404错误

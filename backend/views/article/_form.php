@@ -68,19 +68,11 @@ $this->title = "Articles";
                             <div class="row">
                                 <div class="form-group">
                                     <div class="col-sm-12">
-                                        <?= $form->field($model, 'flag_headline', ['options'=>['tag'=>'span']])->checkbox() ?>
-                                        &nbsp;
-                                        <?= $form->field($model, 'flag_recommend', ['options'=>['tag'=>'span']])->checkbox() ?>
                                         &nbsp;
                                         <?= $form->field($model, 'flag_slide_show', ['options'=>['tag'=>'span']])->checkbox() ?>
                                         &nbsp;
                                         <?= $form->field($model, 'flag_special_recommend', ['options'=>['tag'=>'span']])->checkbox() ?>
                                         &nbsp;
-                                        <?= $form->field($model, 'flag_roll', ['options'=>['tag'=>'span']])->checkbox() ?>
-                                        &nbsp;
-                                        <?= $form->field($model, 'flag_bold', ['options'=>['tag'=>'span']])->checkbox() ?>
-                                        &nbsp;
-                                        <?= $form->field($model, 'flag_picture', ['options'=>['tag'=>'span']])->checkbox() ?>
                                     </div>
                                 </div>
                             </div>
@@ -90,44 +82,41 @@ $this->title = "Articles";
 
 
 
-                    <div class="col-md-5 droppable sortable ui-droppable ui-sortable" style="">
-                        <div class="ibox-title">
-                            <h5><?= Yii::t('app', 'Other') ?></h5>
-                            <div class="ibox-tools">
-                                <a class="collapse-link">
-                                    <i class="fa fa-chevron-up"></i>
-                                </a>
-                                <a class="close-link">
-                                    <i class="fa fa-times"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="ibox-content">
-                            <div class="row">
-                                <div class="col-sm-4">
-                                    <?= $form->field($model, 'status', [
-                                        'size' => 7,
-                                        'labelOptions' => ['class' => 'col-sm-5 control-label']
-                                    ])->dropDownList(Constants::getArticleStatus()); ?>
-                                </div>
-                                <div class="col-sm-4">
-                                    <?= $form->field($model, 'can_comment', [
-                                        'size' => 7,
-                                        'labelOptions' => ['class' => 'col-sm-5 control-label']
-                                    ])->dropDownList(Constants::getYesNoItems()); ?>
-                                </div>
-                                <div class="col-sm-4">
-                                    <?= $form->field($model, 'visibility', [
-                                        'size' => 7,
-                                        'labelOptions' => ['class' => 'col-sm-5 control-label']
-                                    ])->dropDownList(Constants::getArticleVisibility()); ?>
-                                </div>
-                            </div>
-                            <?php $hide=' hide ';if($model->visibility == Constants::ARTICLE_VISIBILITY_SECRET){$hide='';} ?>
-                            <?= $form->field($model, 'password', ['options'=>['class'=>"form-group $hide"]])->textInput(); ?>
-                            <?= $form->field($model, 'tag')->textInput(); ?>
-                            <?= $form->field($model, 'sort')->textInput(); ?>
 
+		<?php
+			$userid = Yii::$app->getUser()->id;
+			if($userid == 1 || $userid == 3) {
+		?>
+		    <div class="col-md-5 droppable sortable ui-droppable ui-sortable" style="">
+			<div class="ibox-title">
+			    <h5><?= Yii::t('app', 'Other') ?></h5>
+			    <div class="ibox-tools">
+				<a class="collapse-link">
+				    <i class="fa fa-chevron-up"></i> </a> <a class="close-link">
+				    <i class="fa fa-times"></i>
+				</a>
+			    </div>
+			</div>
+			<div class="ibox-content">
+			    <div class="row">
+                    <div class="col-sm-12">
+					<?= $form->field($model, 'status', [
+					'size' => 7,
+					'labelOptions' => ['class' => 'col-sm-2 control-label']
+					    ])->dropDownList(Constants::getArticleStatus()); ?></div>
+                   <?= $form->field($model, 'sort')->textInput(); ?>
+
+		<?php
+			}else{
+	
+		?>
+		    <div class="col-md-5 droppable sortable ui-droppable ui-sortable" style="">
+			<div class="ibox-content">
+				<input type="hidden" name="Article[status]" value="0">
+		<?php
+			}
+		?>
+					
                             <?= $form->defaultButtons(['size' => 12]) ?>
                         </div>
                     </div>
@@ -137,16 +126,3 @@ $this->title = "Articles";
         </div>
     </div>
 </div>
-<?php JsBlock::begin()?>
-    <script>
-        $(document).ready(function () {
-            $("select#article-visibility").change(function () {
-                if( $(this).val() == <?=Constants::ARTICLE_VISIBILITY_SECRET?> ){
-                    $("div.field-article-password").removeClass('hide');
-                }else{
-                    $("div.field-article-password").addClass('hide');
-                }
-            })
-        })
-    </script>
-<?php JsBlock::end()?>

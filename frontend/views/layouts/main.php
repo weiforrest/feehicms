@@ -72,7 +72,7 @@ AppAsset::register($this);
     <div id="search-main">
         <div id="searchbar">
             <form id="searchform" action="<?= Url::toRoute('search/index') ?>" method="post">
-                <input id="s" type="text" name="q" value="<?= Html::encode(Yii::$app->getRequest()->get('q')) ?>" required="" placeholder="<?= Yii::t('frontend', 'Please input keywords') ?>" name="s" value="">
+                <input id="s" type="text" name="q" value="<?= Html::encode(Yii::$app->getRequest()->post('q')) ?>" required="" placeholder="<?= Yii::t('frontend', 'Please input keywords') ?>" name="s" value="">
                 <input type="hidden" value="<?php echo Yii::$app->request->csrfToken; ?>" name="_csrf">
                 <button id="searchsubmit" type="submit"><?= Yii::t('frontend', 'Search') ?></button>
             </form>
@@ -80,8 +80,7 @@ AppAsset::register($this);
         <div class="clear"></div>
     </div>
 
-    <div class="container">
-        <div class="speedbar"></div>
+    <div class="container" style="min-height:400px">
         <?= $content ?>
     </div>
 

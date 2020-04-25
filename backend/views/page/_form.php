@@ -49,26 +49,13 @@ $this->title = "Pages";
                         </div>
                         <div class="ibox-content">
                             <div class="row">
-                                <div class="col-sm-4">
+                                <div class="col-sm-12">
                                     <?= $form->field($model, 'status', [
                                         'size' => 7,
-                                        'labelOptions' => ['class' => 'col-sm-5 control-label']
+                                        'labelOptions' => ['class' => 'col-sm-2 control-label']
                                     ])->dropDownList(Constants::getArticleStatus()); ?>
                                 </div>
-                                <div class="col-sm-4">
-                                    <?= $form->field($model, 'can_comment', [
-                                        'size' => 7,
-                                        'labelOptions' => ['class' => 'col-sm-5 control-label']
-                                    ])->dropDownList(Constants::getYesNoItems()); ?>
-                                </div>
-                                <div class="col-sm-4">
-                                    <?= $form->field($model, 'visibility', [
-                                        'size' => 7,
-                                        'labelOptions' => ['class' => 'col-sm-5 control-label']
-                                    ])->dropDownList(Constants::getArticleVisibility()); ?>
-                                </div>
                             </div>
-                            <?= $form->field($model, 'tag')->textInput(); ?>
                             <?= $form->field($model, 'sort')->textInput(); ?>
 
                             <?= $form->defaultButtons(['size' => 12]) ?>

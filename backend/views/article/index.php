@@ -36,8 +36,116 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Articles');
             <?= $this->render('/widgets/_ibox-title') ?>
             <div class="ibox-content">
                 <?= Bar::widget() ?>
-                <?=$this->render('_search', ['model' => $searchModel]); ?>
                 <?php Pjax::begin(['id' => 'pjax']); ?>
+		
+	<?php 
+		
+		$userid = Yii::$app->getUser()->id;
+		if($userid == 1 || $userid == 3){
+	?>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'filterModel' => $searchModel,
+                'columns' => [
+                    [
+                        'class' => CheckboxColumn::className(),
+                    ],
+                    [
+                        'attribute' => 'id',
+                    ],
+                    [
+                        'attribute' => 'cid',
+                        'label' => Yii::t('app', 'Category'),
+                        'value' => function ($model) {
+                            return $model->category ? $model->category->name : Yii::t('app', 'uncategoried');
+                        },
+                        'filter' => Category::getCategoriesName(),
+                    ],
+                    [
+                        'attribute' => 'title',
+                        'width' => '170',
+                    ],
+                    [
+                        'attribute' => 'sort',
+                        'class' => SortColumn::className(),
+                    ],
+                    [
+                        'attribute' => 'author_name',
+                    ],
+                    [
+                        'attribute' => 'thumb',
+                        'format' => 'raw',
+                        'value' => function ($model, $key, $index, $column) {
+                            if ($model->thumb == '') {
+                                $num = Constants::YesNo_No;
+                            } else {
+                                $num = Constants::YesNo_Yes;
+                            }
+                            return Html::a(Constants::getYesNoItems($num), $model->thumb ? $model->thumb : 'javascript:void(0)', [
+                                'img' => $model->thumb ? $model->thumb : '',
+                                'class' => 'thumbImg',
+                                'target' => '_blank',
+                                'data-pjax' => 0
+                            ]);
+                        },
+                        'filter' => Constants::getYesNoItems(),
+                    ],
+                    [
+                        'class' =>StatusColumn::className(),
+                        'attribute' => 'flag_slide_show',
+                        'filter' => Constants::getYesNoItems(),
+                    ],
+                    [
+                        'class' =>StatusColumn::className(),
+                        'attribute' => 'flag_special_recommend',
+                        'filter' => Constants::getYesNoItems(),
+                    ],
+                    [
+                        'attribute' => 'status',
+                        'format' => 'raw',
+                        'value' => function ($model, $key, $index, $column) {
+                            /* @var $model backend\models\Article */
+                            return Html::a(Constants::getArticleStatus($model['status']), ['update', 'id' => $model['id']], [
+                        'class' => 'btn btn-xs btn-rounded ' . ( $model['status'] == Constants::YesNo_Yes ? 'btn-info' : 'btn-default' ),
+                            'data-confirm' => $model['status'] == Constants::YesNo_Yes ? Yii::t('app', 'Are you sure you want to cancel release?') : Yii::t('app', 'Are you sure you want to publish?'),
+                            'data-method' => 'post',
+                            'data-pjax' => '0',
+                            'data-params' => [
+                                $model->formName() . '[status]' => $model['status'] == Constants::YesNo_Yes ? Constants::YesNo_No : Constants::YesNo_Yes
+                            ]
+                        ]);
+                        },
+                        'filter' => Constants::getArticleStatus(),
+                    ],
+                    [
+                        'class' => DateColumn::className(),
+                        'attribute' => 'created_at',
+                    ],
+                    [
+                        'class' => DateColumn::className(),
+                        'attribute' => 'updated_at',
+                    ],
+                    [
+                        'class' => ActionColumn::className(),
+                        'buttons' => [
+                            'comment' => function ($url, $model, $key) {
+                                return Html::a('<i class="fa  fa-commenting-o" aria-hidden="true"></i> ', Url::to([
+                                    'comment/index',
+                                    'CommentSearch[aid]' => $model->id
+                                ]), [
+                                    'title' => Yii::t('app', 'Comments'),
+                                    'data-pjax' => '0',
+                                    'class' => 'btn-sm openContab',
+                                ]);
+                            }
+                        ],
+                        'template' => '{view-layer} {update} {delete} {comment}',
+                    ],
+                    ]
+                ]); ?>
+	<?php
+	}else{
+	?>
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     'filterModel' => $searchModel,
@@ -86,54 +194,11 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Articles');
                             'filter' => Constants::getYesNoItems(),
                         ],
                         [
-                            'class' => StatusColumn::className(),
-                            'attribute' => 'flag_headline',
-                            'filter' => Constants::getYesNoItems(),
-                        ],
-                        [
-                            'class' =>StatusColumn::className(),
-                            'attribute' => 'flag_recommend',
-                            'filter' => Constants::getYesNoItems(),
-                        ],
-                        [
-                            'class' =>StatusColumn::className(),
-                            'attribute' => 'flag_slide_show',
-                            'filter' => Constants::getYesNoItems(),
-                        ],
-                        [
-                            'class' =>StatusColumn::className(),
-                            'attribute' => 'flag_special_recommend',
-                            'filter' => Constants::getYesNoItems(),
-                        ],
-                        [
-                            'class' =>StatusColumn::className(),
-                            'attribute' => 'flag_roll',
-                            'filter' => Constants::getYesNoItems(),
-                        ],
-                        [
-                            'class' =>StatusColumn::className(),
-                            'attribute' => 'flag_bold',
-                            'filter' => Constants::getYesNoItems(),
-                        ],
-                        [
-                            'class' =>StatusColumn::className(),
-                            'attribute' => 'flag_picture',
-                            'filter' => Constants::getYesNoItems(),
-                        ],
-                        [
                             'attribute' => 'status',
                             'format' => 'raw',
                             'value' => function ($model, $key, $index, $column) {
                                 /* @var $model backend\models\Article */
-                                return Html::a(Constants::getArticleStatus($model['status']), ['update', 'id' => $model['id']], [
-                                    'class' => 'btn btn-xs btn-rounded ' . ( $model['status'] == Constants::YesNo_Yes ? 'btn-info' : 'btn-default' ),
-                                    'data-confirm' => $model['status'] == Constants::YesNo_Yes ? Yii::t('app', 'Are you sure you want to cancel release?') : Yii::t('app', 'Are you sure you want to publish?'),
-                                    'data-method' => 'post',
-                                    'data-pjax' => '0',
-                                    'data-params' => [
-                                        $model->formName() . '[status]' => $model['status'] == Constants::YesNo_Yes ? Constants::YesNo_No : Constants::YesNo_Yes
-                                    ]
-                                ]);
+                                return Constants::getArticleStatus($model['status']);
                             },
                             'filter' => Constants::getArticleStatus(),
                         ],
@@ -163,6 +228,14 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Articles');
                         ],
                     ]
                 ]); ?>
+	<?php
+	}
+	?>
+
+
+
+
+
                 <?php Pjax::end(); ?>
             </div>
         </div>

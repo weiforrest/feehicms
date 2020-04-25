@@ -18,10 +18,15 @@ use common\widgets\JsBlock;
                     ]
                 ]); ?>
                 <div class="hr-line-dashed"></div>
-                <?= $form->field($model, 'duty_time')->textInput(['readonly' => 'readonly']) ?>
+
+                <?= $form->field($model, 'name')->textInput() ?>
                 <div class="hr-line-dashed"></div>
 
-                <?= $form->field($model, 'gun')->textarea() ?>
+                <?= $form->field($model, 'tel')->textInput() ?>
+                <div class="hr-line-dashed"></div>
+
+                <?= $form->field($model, 'sort')->textInput(); ?>
+
                 <div class="hr-line-dashed"></div>
 
                 <?= $form->defaultButtons() ?>
@@ -30,13 +35,3 @@ use common\widgets\JsBlock;
         </div>
     </div>
 </div>
-<?php JsBlock::begin() ?>
-<script>
-    //使用layui 的时间获取器
-        laydate.render({
-            elem: "#duty-duty_time",
-            lang: "zh",
-            showBottom:false,
-        });
-</script>
-<?php JsBlock::end() ?> 

@@ -152,7 +152,7 @@ class Category extends \yii\db\ActiveRecord
                 $sign = ' │';
             }
             if( $menuCategoryChosen ){
-                $url = '{"0":"/article/index","cat":"' . $category['alias'] . '"}';
+                $url = '{"0":"/article/cate","cat":"' . $category['alias'] . '"}';
             }else{
                 $url = '/'.$category['alias'];
             }

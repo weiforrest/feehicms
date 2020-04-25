@@ -32,18 +32,10 @@ class ArticleSearch extends Article
                 [
                     'id',
                     'status',
-                    'flag_headline',
-                    'flag_recommend',
                     'flag_slide_show',
                     'flag_special_recommend',
-                    'flag_roll',
-                    'flag_bold',
-                    'flag_picture',
                     'thumb',
                     'sort',
-                    'visibility',
-                    'can_comment',
-                    'password',
                 ],
                 'integer',
             ],
@@ -86,28 +78,19 @@ class ArticleSearch extends Article
         if (! $this->validate()) {
             return $dataProvider;
         }
-        if($userid !== 1) {
+        if($userid !== 1 && $userid !== 3) {	// 办公室和admin 可以看到所有的
             $query->andFilterWhere(['author_id' => $userid]);
         }
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['id' => $this->id])
             ->andFilterWhere(['status' => $this->status])
-            ->andFilterWhere(['flag_headline' => $this->flag_headline])
-            ->andFilterWhere(['flag_recommend' => $this->flag_recommend])
             ->andFilterWhere(['flag_slide_show' => $this->flag_slide_show])
             ->andFilterWhere(['flag_special_recommend' => $this->flag_special_recommend])
-            ->andFilterWhere(['flag_roll' => $this->flag_roll])
-            ->andFilterWhere(['flag_bold' => $this->flag_bold])
-            ->andFilterWhere(['flag_picture' => $this->flag_picture])
             ->andFilterWhere(['like', 'author_name', $this->author_name])
             ->andFilterWhere(['sort' => $this->sort])
-            ->andFilterWhere(['visibility' => $this->visibility])
-            ->andFilterWhere(['can_comment' => $this->can_comment])
-            ->andFilterWhere(['like', 'seo_keywords', $this->seo_keywords])
             ->andFilterWhere(['like', 'content', $this->content])
             ->andFilterWhere(['like', 'sub_title', $this->sub_title])
-            ->andFilterWhere(['like', 'summary', $this->summary])
-            ->andFilterWhere(['like', 'seo_title', $this->seo_title]);
+            ->andFilterWhere(['like', 'summary', $this->summary]);
         if ($this->thumb == 1) {
             $query->andWhere(['<>', 'thumb', '']);
         } else {

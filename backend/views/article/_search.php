@@ -28,12 +28,6 @@ use common\libs\Constants;
 
     <?= $form->field($model, 'sub_title', ['labelOptions'=>['class'=>'col-sm-4 control-label'], 'size'=>8, 'options'=>['class'=>'col-sm-3']]) ?>
 
-    <?= $form->field($model, 'visibility', ['labelOptions'=>['class'=>'col-sm-4 control-label'], 'size'=>8, 'options'=>['class'=>'col-sm-3']])->dropDownList(Constants::getYesNoItems()) ?>
-
-    <?= $form->field($model, 'can_comment', ['labelOptions'=>['class'=>'col-sm-4 control-label'], 'size'=>8, 'options'=>['class'=>'col-sm-3']])->dropDownList(Constants::getYesNoItems()) ?>
-
-    <?= $form->field($model, 'password', ['labelOptions'=>['class'=>'col-sm-4 control-label'], 'size'=>8, 'options'=>['class'=>'col-sm-3']])->dropDownList(Constants::getYesNoItems()) ?>
-
     <?= $form->field($model, 'summary', ['labelOptions'=>['class'=>'col-sm-4 control-label'], 'size'=>8, 'options'=>['class'=>'col-sm-3']]) ?>
 
 
